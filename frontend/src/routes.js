@@ -2,31 +2,61 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from './views/Login'
 import Logout from './views/Logout'
-import Cars from './views/Cars'
+import Admin from './views/Admin'
+import Home from './views/Home'
+import Projects from './views/Projects'
+import Blog from './views/Blog'
+import Feed from './views/Feed'
+import Contact from './views/Contact'
 
 Vue.use(VueRouter)
 
 export default new VueRouter({
     mode: 'history',
-    base: process.env.BASE_URL,
+    base: '/',
     routes: [
         {
-            path: '/login',
+            path: '/admin/login',
             name: 'login',
             component: Login,
         },
         {
-            path: '/logout',
+            path: '/admin/logout',
             name: 'logout',
             component: Logout,
         },
         {
-            path: '/',
-            name: 'cars',
-            component: Cars,
+            path: '/admin',
+            name: 'admin',
+            component: Admin,
             meta: {
                 requiresLogin: true
             }
         },
+        {
+            path: '/',
+            name: 'home',
+            component: Home,
+        },
+        {
+            path: '/projects',
+            name: 'projects',
+            component: Projects,
+        },
+        {
+            path: '/blog',
+            name: 'blog',
+            component: Blog,
+        },
+        {
+            path: '/feed',
+            name: 'feed',
+            component: Feed,
+        },
+        {
+            path: '/contact',
+            name: 'contact',
+            component: Contact,
+        }
     ]
 })

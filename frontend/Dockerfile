@@ -1,14 +1,14 @@
 # build stage
 FROM node:15.4.0-alpine3.10 as build
 
-RUN mkdir /app
+ENV PATH="/app/node_modules/.bin/:${PATH}"
+
 WORKDIR /app
+COPY package*.json ./
 
-COPY package*.json /app/
-RUN npm install --silent
+RUN npm install
 
-COPY . /app
-RUN npm run build
+COPY . /app/
 
 # production stage
 FROM nginxinc/nginx-unprivileged:1.19.6-alpine

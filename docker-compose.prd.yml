@@ -68,7 +68,7 @@ services:
     container_name: production_app
     build:
       context: ./frontend
-      dockerfile: ./Dockerfile-prd
+      target:
     ports:
       - "80:80"
     env_file:
