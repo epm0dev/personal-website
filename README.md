@@ -1,4 +1,4 @@
-django-vue-postgres-celery-redis-docker
+personal-website
 ===========
 TODO project description
 
