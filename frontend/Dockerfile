@@ -1,5 +1,5 @@
-# build stage
-FROM node:15.4.0-alpine3.10 as build
+# install stage
+FROM node:15.4.0-alpine3.10 as install
 
 ENV PATH="/app/node_modules/.bin/:${PATH}"
 
@@ -9,6 +9,10 @@ COPY package*.json ./
 RUN npm install
 
 COPY . /app/
+
+# build stage
+FROM install as build
+RUN npm run build
 
 # production stage
 FROM nginxinc/nginx-unprivileged:1.19.6-alpine
