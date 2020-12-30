@@ -61,7 +61,7 @@ services:
     container_name: app
     build:
       context: ./frontend
-      target: build
+      target: install
     volumes:
       - ./frontend:/app
       - /app/node_modules/

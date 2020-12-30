@@ -66,8 +66,7 @@ services:
 
   production_app:
     container_name: production_app
-    build:
-      context: ./frontend
+    build: ./frontend
     ports:
       - "80:80"
     env_file:
