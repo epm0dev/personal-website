@@ -2,6 +2,7 @@
     <div>
         <NavBar></NavBar>
         <div class="container-fluid">
+            <h1 class="text-center mt-4 mb-0">My Projects</h1>
             <ProjectsCategory category="Featured" :projects="projects.featured"></ProjectsCategory>
             <ProjectsCategory :projects="projects.general"></ProjectsCategory>
             <ProjectsCategory category="Archived" :projects="projects.archived"></ProjectsCategory>

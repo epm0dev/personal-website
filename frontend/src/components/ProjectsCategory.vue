@@ -2,7 +2,7 @@
 <div v-if="projects.length > 0">
     <div class="row">
         <div class="col-auto" v-if="category">
-            <h1 class="my-2">{{category}}</h1>
+            <h2 class="my-2">{{category}}</h2>
         </div>
         <div class="col d-flex align-items-center">
             <hr class="flex-fill mt-4" v-if="category">
