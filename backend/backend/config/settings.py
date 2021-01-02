@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     'projects',
     'blog',
     'feed',
-    'api',
 ]
 
 ROOT_URLCONF = 'config.urls'
