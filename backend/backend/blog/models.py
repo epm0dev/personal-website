@@ -10,7 +10,13 @@ class Post(models.Model):
     # Standard fields
     title = models.CharField(
         max_length=100,
-        null=False
+        null=False,
+        default='Post Title'
+    )
+    subtitle = models.CharField(
+        max_length=200,
+        null=False,
+        default='Post Subtitle'
     )
     contents = models.TextField(
         max_length=10000,
@@ -28,8 +34,14 @@ class Post(models.Model):
     project = models.ForeignKey(
         Project,
         related_name='projects',
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
     )
+
+    # Methods
+    def __str__(self):
+        return f'{self.title} - {self.subtitle}'
 
     class Meta:
         """

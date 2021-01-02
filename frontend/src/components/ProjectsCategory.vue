@@ -29,7 +29,7 @@ export default {
     },
     props: {
         category: {required: false, type: String},
-        projects: {required: true, type: Object}
+        projects: {required: true, type: Array}
     }
 }
 </script>

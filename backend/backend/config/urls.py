@@ -5,11 +5,13 @@ from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshVie
 from rest_framework.routers import DefaultRouter
 from projects.views import ProjectViewSet
 from contact.views import ContactFormViewSet
+from blog.views import PostViewSet
 
 
 router = DefaultRouter()
 router.register(r'projects', ProjectViewSet, basename='project')
 router.register(r'contact', ContactFormViewSet, basename='contact')
+router.register(r'blog', PostViewSet, basename='blog')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
