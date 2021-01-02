@@ -7,7 +7,9 @@ import os
 from corsheaders.defaults import default_headers
 
 from celery.schedules import crontab
-import config.tasks
+
+from backend.contact import tasks as contact_tasks
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -30,6 +32,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'rest_framework_simplejwt.token_blacklist',
+    'contact',
     'projects',
     'blog',
     'feed',
@@ -105,7 +108,7 @@ MEDIA_ROOT = '/vol/web/media'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated'
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly'
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -134,8 +137,8 @@ CELERY_BROKER_URL = f'redis://{os.environ.get("REDIS_HOST")}:6379'
 CELERY_RESULT_BACKEND = f'redis://{os.environ.get("REDIS_HOST")}:6379'
 
 CELERY_BEAT_SCHEDULE = {
-    'sample_task': {
-        'task': 'config.tasks.sample_task',
-        'schedule': crontab(minute='*/1'),
+    'send_contact_form_digest': {
+        'task': 'contact_tasks.send_contact_form_digest',
+        'schedule': crontab(hour=9),
     },
 }

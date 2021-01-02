@@ -1,17 +1,25 @@
 <template>
-  <div>
-      <NavBar></NavBar>
-  </div>
+    <div>
+        <NavBar></NavBar>
+    </div>
 </template>
 
 <script>
-import NavBar from '../components/Navbar'
+import NavBar from '../components/NavBar'
 
 export default {
-  name: "Home",
-  components: {
-    NavBar
-  },
+    name: "Home",
+    components: {
+        NavBar
+    },
+    created() {
+        /*
+        this.$store.dispatch('userLogin', {
+            username: 'admin',
+            password: 'admin'
+        })
+         */
+    }
 }
 </script>
 

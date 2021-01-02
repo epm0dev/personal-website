@@ -1,8 +1,7 @@
-from django.urls import path
-from .views import CarList, CarDetail
+from rest_framework.routers import DefaultRouter
+from projects.views import ProjectViewSet
 
 
-urlpatterns = [
-    path('cars/', CarList.as_view(), name='car-list'),
-    path('cars/<int:pk>/', CarDetail.as_view(), name='car-detail')
-]
+router = DefaultRouter()
+router.register(r'projects', ProjectViewSet, basename='project')
+urlpatterns = router.urls

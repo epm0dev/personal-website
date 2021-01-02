@@ -2,29 +2,73 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
+class Phase(models.IntegerChoices):
+    """
+    TODO Docs
+    """
+
+    DESIGN = 1, _('Design')
+    IMPLEMENTATION = 2, _('Implementation')
+    INTEGRATION = 3, _('Integration')
+    MAINTENANCE = 4, _('Maintenance')
+
+
+class DisplayCategory(models.IntegerChoices):
+    """
+    TODO Docs
+    """
+
+    FEATURED = 1, _('Featured')
+    GENERAL = 2, _('General')
+    ARCHIVED = 3, _('Archived')
+
+
+class FeaturedProjectManager(models.Manager):
+    """
+    TODO Docs
+    """
+
+    def get_queryset(self):
+        """
+        TODO Docs
+        """
+        return super().get_queryset().filter(_category=DisplayCategory.FEATURED)
+
+
+class GeneralProjectManager(models.Manager):
+    """
+    TODO Docs
+    """
+
+    def get_queryset(self):
+        """
+        TODO Docs
+        """
+        return super().get_queryset().filter(_category=DisplayCategory.GENERAL)
+
+
+class ArchivedProjectManager(models.Manager):
+    """
+    TODO Docs
+    """
+
+    def get_queryset(self):
+        """
+        TODO Docs
+        """
+        return super().get_queryset().filter(_category=DisplayCategory.ARCHIVED)
+
+
 class Project(models.Model):
     """
     TODO Docs
     """
 
-    class Phase(models.IntegerChoices):
-        """
-        TODO Docs
-        """
-
-        DESIGN = 1, _('Design')
-        IMPLEMENTATION = 2, _('Implementation')
-        INTEGRATION = 3, _('Integration')
-        MAINTENANCE = 4, _('Maintenance')
-
-    class DisplayCategory(models.IntegerChoices):
-        """
-        TODO Docs
-        """
-
-        FEATURED = 1
-        GENERAL = 2
-        ARCHIVED = 3
+    # Project object managers
+    objects = models.Manager()
+    featured = FeaturedProjectManager()
+    general = GeneralProjectManager()
+    archived = ArchivedProjectManager()
 
     # Standard fields
     title = models.CharField(
@@ -34,7 +78,8 @@ class Project(models.Model):
     )
     description = models.TextField(
         max_length=500,
-        null=False
+        null=False,
+        default='A short-form description for this project has yet to be added.'
     )
     description_verbose = models.TextField(
         max_length=10000,
@@ -47,11 +92,11 @@ class Project(models.Model):
     datetime_changed = models.DateTimeField(
         auto_now=True
     )
-    phase = models.PositiveSmallIntegerField(
+    _phase = models.PositiveSmallIntegerField(
         choices=Phase.choices,
         default=Phase.DESIGN
     )
-    display_category = models.PositiveIntegerField(
+    _category = models.PositiveIntegerField(
         choices=DisplayCategory.choices,
         default=DisplayCategory.GENERAL
     )
@@ -59,8 +104,25 @@ class Project(models.Model):
     # Relationship fields
     _keywords = models.ManyToManyField(
         'Keyword',
-        related_name='projects'
+        related_name='projects',
+        blank=True
     )
+
+    # Properties
+    @property
+    def phase(self):
+        return Phase(self._phase).label
+
+    @property
+    def category(self):
+        return DisplayCategory(self._category).label
+
+    # Methods
+    def __str__(self):
+        """
+        TODO Docs
+        """
+        return self.title
 
     class Meta:
         """
@@ -68,7 +130,7 @@ class Project(models.Model):
         """
 
         get_latest_by = 'datetime_created'
-        ordering = ['phase', '-datetime_changed']
+        ordering = ['_phase', '-datetime_changed']
         unique_together = [
             ['description', 'description_verbose']
         ]
@@ -89,12 +151,20 @@ class Keyword(models.Model):
     # Relationship fields
     _projects = models.ManyToManyField(
         'Project',
-        related_name='keywords'
+        related_name='keywords',
+        blank=True
     )
+
+    # Methods
+    def __str__(self):
+        """
+        TODO Docs
+        """
+        return self.word
 
     class Meta:
         """
         TODO Docs
         """
 
-        ordering = ['-word']
+        ordering = ['word']
