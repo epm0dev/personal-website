@@ -134,9 +134,9 @@ class Project(models.Model):
         super(Project, self).save(*args, **kwargs)
 
         if newProject:
-            celery.current_app.send_task('projects.tasks.new_project_created', (self.pk,))
+            celery.current_app.send_task('projects.tasks.new_project_created_activity', (self.pk,))
         else:
-            celery.current_app.send_task('projects.tasks.project_edited', (self.pk,))
+            celery.current_app.send_task('projects.tasks.new_project_edited_activity', (self.pk,))
 
 
     class Meta:

@@ -36,9 +36,15 @@ class ProjectCreatedActivity(ProjectActivityBase):
 
     # Methods
     def __str__(self):
+        """
+        TODO Docs
+        """
         return f'Created Project - {self.project.title} at {self.datetime_created.time()} on {self.datetime_created.date()}'
 
     def save(self, *args, **kwargs):
+        """
+        TODO Docs
+        """
         self.text = f'I created a new project titled {self.project.title}!'
         super(ProjectCreatedActivity, self).save(*args, **kwargs)
 
@@ -51,9 +57,15 @@ class ProjectEditedActivity(ProjectActivityBase):
 
     # Methods
     def __str__(self):
+        """
+        TODO Docs
+        """
         return f'Edited Project - {self.project.title} at {self.datetime_created.time()} on {self.datetime_created.date()}'
 
     def save(self, *args, **kwargs):
+        """
+        TODO Docs
+        """
         self.text = f'I edited my project titled {self.project.title}!'
         super(ProjectEditedActivity, self).save(*args, **kwargs)
 
@@ -73,8 +85,8 @@ class PostActivityBase(models.Model):
     )
 
     # Relationships
-    project = models.ForeignKey(
-        Project,
+    post = models.ForeignKey(
+        Post,
         on_delete=models.CASCADE,
         related_name='%(class)s_related'
     )
@@ -89,9 +101,19 @@ class PostCreatedActivity(PostActivityBase):
     TODO Docs
     """
 
+    # Methods
+    def __str__(self):
+        """
+        TODO Docs
+        """
+        return f'Created Post - {self.post.title} at {self.datetime_created.time()} on {self.datetime_created.date()}'
+
     def save(self, *args, **kwargs):
-        self.text = f'I created a new blog post titled {self.project.title}!'
-        super(ProjectCreatedActivity, self).save(*args, **kwargs)
+        """
+        TODO Docs
+        """
+        self.text = f'I created a new blog post titled {self.post.title}!'
+        super(PostCreatedActivity, self).save(*args, **kwargs)
 
 
 class PostEditedActivity(PostActivityBase):
@@ -99,6 +121,16 @@ class PostEditedActivity(PostActivityBase):
     TODO Docs
     """
 
+    # Methods
+    def __str__(self):
+        """
+        TODO Docs
+        """
+        return f'Edited Post - {self.post.title} at {self.datetime_created.time()} on {self.datetime_created.date()}'
+
     def save(self, *args, **kwargs):
-        self.text = f'I edited my blog post titled {self.project.title}!'
-        super(ProjectCreatedActivity, self).save(*args, **kwargs)
+        """
+        TODO Docs
+        """
+        self.text = f'I edited my blog post titled {self.post.title}!'
+        super(PostEditedActivity, self).save(*args, **kwargs)
