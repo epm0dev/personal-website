@@ -1,7 +1,9 @@
 from django.db import models
+from projects.models import Project
+from blog.models import Post
 
 
-class ActivityBase(models.Model):
+class ProjectActivityBase(models.Model):
     """
     TODO Docs
     """
@@ -15,79 +17,88 @@ class ActivityBase(models.Model):
         null=False
     )
 
+    # Relationships
+    project = models.ForeignKey(
+        Project,
+        on_delete=models.CASCADE,
+        related_name='%(app_label)s_%(class)s_related'
+    )
+
     class Meta:
-        """
-        TODO Docs
-        """
         abstract = True
         ordering = ['-datetime_created']
-
-
-class ProjectActivityBase(ActivityBase):
-    """
-    TODO Docs
-    """
-    pass
 
 
 class ProjectCreatedActivity(ProjectActivityBase):
     """
     TODO Docs
     """
-    pass
+
+    # Methods
+    def __str__(self):
+        return f'Created Project - {self.project.title} at {self.datetime_created.time()} on {self.datetime_created.date()}'
+
+    def save(self, *args, **kwargs):
+        self.text = f'I created a new project titled {self.project.title}!'
+        super(ProjectCreatedActivity, self).save(*args, **kwargs)
+
 
 
 class ProjectEditedActivity(ProjectActivityBase):
     """
     TODO Docs
     """
-    pass
+
+    # Methods
+    def __str__(self):
+        return f'Edited Project - {self.project.title} at {self.datetime_created.time()} on {self.datetime_created.date()}'
+
+    def save(self, *args, **kwargs):
+        self.text = f'I edited my project titled {self.project.title}!'
+        super(ProjectEditedActivity, self).save(*args, **kwargs)
 
 
-class PostActivityBase(ActivityBase):
+class PostActivityBase(models.Model):
     """
     TODO Docs
     """
-    pass
+
+    # Standard fields
+    datetime_created = models.DateTimeField(
+        auto_now_add=True
+    )
+    text = models.CharField(
+        max_length=200,
+        null=False
+    )
+
+    # Relationships
+    project = models.ForeignKey(
+        Project,
+        on_delete=models.CASCADE,
+        related_name='%(class)s_related'
+    )
+
+    class Meta:
+        abstract = True
+        ordering = ['-datetime_created']
 
 
 class PostCreatedActivity(PostActivityBase):
     """
     TODO Docs
     """
-    pass
+
+    def save(self, *args, **kwargs):
+        self.text = f'I created a new blog post titled {self.project.title}!'
+        super(ProjectCreatedActivity, self).save(*args, **kwargs)
 
 
 class PostEditedActivity(PostActivityBase):
     """
     TODO Docs
     """
-    pass
 
-
-class GithubActivityBase(ProjectActivityBase):
-    """
-    TODO Docs
-    """
-    pass
-
-
-class GithubNewRepositoryActivity(GithubActivityBase):
-    """
-    TODO Docs
-    """
-    pass
-
-
-class GithubNewCommitActivity(GithubActivityBase):
-    """
-    TODO Docs
-    """
-    pass
-
-
-class LinkedinActivity(ActivityBase):
-    """
-    TODO Docs
-    """
-    pass
+    def save(self, *args, **kwargs):
+        self.text = f'I edited my blog post titled {self.project.title}!'
+        super(ProjectCreatedActivity, self).save(*args, **kwargs)

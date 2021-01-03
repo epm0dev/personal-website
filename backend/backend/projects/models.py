@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+import celery
 
 
 class Phase(models.IntegerChoices):
@@ -123,6 +124,20 @@ class Project(models.Model):
         TODO Docs
         """
         return self.title
+
+    def save(self, *args, **kwargs):
+        if self.pk:
+            newProject = False
+        else:
+            newProject = True
+
+        super(Project, self).save(*args, **kwargs)
+
+        if newProject:
+            celery.current_app.send_task('projects.tasks.new_project_created', (self.pk,))
+        else:
+            celery.current_app.send_task('projects.tasks.project_edited', (self.pk,))
+
 
     class Meta:
         """

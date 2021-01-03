@@ -8,8 +8,6 @@ from corsheaders.defaults import default_headers
 
 from celery.schedules import crontab
 
-from backend.contact import tasks as contact_tasks
-
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -137,7 +135,7 @@ CELERY_RESULT_BACKEND = f'redis://{os.environ.get("REDIS_HOST")}:6379'
 
 CELERY_BEAT_SCHEDULE = {
     'send_contact_form_digest': {
-        'task': 'contact_tasks.send_contact_form_digest',
+        'task': 'contact.tasks.send_contact_form_digest',
         'schedule': crontab(hour=9),
     },
 }
