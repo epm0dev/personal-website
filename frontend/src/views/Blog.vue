@@ -5,15 +5,17 @@
             <h1 class="text-center mt-3 mb-0">Blog</h1>
             <div class="container-fluid">
                 <hr class="mb-0">
-                <BlogPostPage :class="{'d-none': currentPage !== postPage.page}" v-for="postPage in blogPosts" :key="postPage.page" :blogPage="postPage"></BlogPostPage>
+                <BlogPostPage :class="{'d-none': currentPage !== postPage.page}" v-for="postPage in blogPosts"
+                              :key="postPage.page" :blogPage="postPage"></BlogPostPage>
                 <hr>
                 <nav class="d-flex justify-content-center">
                     <ul class="pagination">
                         <li @click="prevPage" class="page-item" :class="{disabled: currentPage === 1}">
                             <a class="page-link" href="#">Previous</a>
                         </li>
-                        <li @click="setPage(postPage.page)" :class="{active: currentPage === postPage.page}" v-for="postPage in blogPosts" :key="postPage.page" class="page-item">
-                            <a class="page-link" href="#">{{postPage.page }}</a>
+                        <li @click="setPage(postPage.page)" :class="{active: currentPage === postPage.page}"
+                            v-for="postPage in blogPosts" :key="postPage.page" class="page-item">
+                            <a class="page-link" href="#">{{ postPage.page }}</a>
                         </li>
                         <li @click="nextPage" class="page-item" :class="{disabled: currentPage === numBlogPostPages}">
                             <a class="page-link" href="#">Next</a>
@@ -44,10 +46,14 @@ export default {
     computed: mapState(['blogPosts', 'numBlogPostPages']),
     methods: {
         prevPage() {
-            this.currentPage--;
+            if (this.currentPage !== 1) {
+                this.currentPage--;
+            }
         },
         nextPage() {
-            this.currentPage++;
+            if (this.currentPage !== this.numBlogPostPages) {
+                this.currentPage++;
+            }
         },
         setPage(page) {
             this.currentPage = page;

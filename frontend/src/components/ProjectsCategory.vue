@@ -1,12 +1,12 @@
 <template>
 <div v-if="projects.length > 0">
-    <div class="row">
+    <div class="row mx-1">
         <div class="col-auto" v-if="category">
             <h2 class="my-2">{{category}}</h2>
         </div>
         <div class="col d-flex align-items-center">
             <hr class="flex-fill mt-4" v-if="category">
-            <hr class="flex-fill" v-if="!category">
+            <hr class="flex-fill mt-1" v-if="!category">
         </div>
     </div>
     <div class="container-fluid">
