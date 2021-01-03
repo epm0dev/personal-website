@@ -29,7 +29,8 @@ export default new Vuex.Store({
             archived: []
         },
         project: {},
-        blogPosts: []
+        blogPosts: [],
+        numBlogPostPages: 0
     },
     mutations: {
         updateStorage(state, {access, refresh}) {
@@ -48,6 +49,9 @@ export default new Vuex.Store({
         },
         setBlogPosts(state, {posts}) {
             state.blogPosts = posts
+        },
+        setNumBlogPostPages(state) {
+            state.numBlogPostPages = state.blogPosts.length
         }
     },
     getters: {
@@ -120,6 +124,7 @@ export default new Vuex.Store({
                     context.commit('setBlogPosts', {
                         posts: response
                     })
+                    context.commit('setNumBlogPostPages')
                 })
         }
     }

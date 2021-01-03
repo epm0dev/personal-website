@@ -1,5 +1,5 @@
 <template>
-    <div class="container px-5 mt-3">
+    <div class="container px-2 mt-3">
         <div class="card">
             <div class="card-body">
                 <h3>{{ post.title }}</h3>

@@ -5,15 +5,19 @@
             <h1 class="text-center mt-3 mb-0">Blog</h1>
             <div class="container-fluid">
                 <hr class="mb-0">
-                <BlogPostPage v-for="postPage in blogPosts" :key="postPage.page" :blogPage="postPage"></BlogPostPage>
+                <BlogPostPage :class="{'d-none': currentPage !== postPage.page}" v-for="postPage in blogPosts" :key="postPage.page" :blogPage="postPage"></BlogPostPage>
                 <hr>
-                <nav>
+                <nav class="d-flex justify-content-center">
                     <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        <li @click="prevPage" class="page-item" :class="{disabled: currentPage === 1}">
+                            <a class="page-link" href="#">Previous</a>
+                        </li>
+                        <li @click="setPage(postPage.page)" :class="{active: currentPage === postPage.page}" v-for="postPage in blogPosts" :key="postPage.page" class="page-item">
+                            <a class="page-link" href="#">{{postPage.page }}</a>
+                        </li>
+                        <li @click="nextPage" class="page-item" :class="{disabled: currentPage === numBlogPostPages}">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -32,7 +36,23 @@ export default {
         NavBar,
         BlogPostPage
     },
-    computed: mapState(['blogPosts']),
+    data() {
+        return {
+            currentPage: 1
+        }
+    },
+    computed: mapState(['blogPosts', 'numBlogPostPages']),
+    methods: {
+        prevPage() {
+            this.currentPage--;
+        },
+        nextPage() {
+            this.currentPage++;
+        },
+        setPage(page) {
+            this.currentPage = page;
+        }
+    },
     created() {
         this.$store.dispatch('loadBlogPosts')
     }
