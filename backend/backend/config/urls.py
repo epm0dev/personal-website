@@ -6,12 +6,14 @@ from rest_framework.routers import DefaultRouter
 from projects.views import ProjectViewSet
 from contact.views import ContactFormViewSet
 from blog.views import PostViewSet
+from feed.views import ActivityViewSet
 
 
 router = DefaultRouter()
 router.register(r'projects', ProjectViewSet, basename='project')
 router.register(r'contact', ContactFormViewSet, basename='contact')
 router.register(r'blog', PostViewSet, basename='blog')
+router.register(r'feed', ActivityViewSet, basename='feed')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
