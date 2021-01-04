@@ -1,6 +1,6 @@
 <template>
 <div class="card">
-    <div class="card-header bg-primary bg-gradient text-light">
+    <div class="card-header bg-primary text-light">
         <h3 class="mb-0">{{project.title}}</h3>
     </div>
     <div v-if="!isArchived" class="card-header text-center" :class="phaseColor">

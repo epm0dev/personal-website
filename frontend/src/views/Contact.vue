@@ -5,7 +5,7 @@
             <div v-if="!formSubmitted">
                 <h1 class="text-center">Contact Me</h1>
                 <hr>
-                <form @submit.prevent="submitForm">
+                <form @submit.prevent="submitForm" class="mx-1">
                     <div class="row mt-3">
                         <div class="col form-group">
                             <label for="first-name" class="mb-2">First Name</label>

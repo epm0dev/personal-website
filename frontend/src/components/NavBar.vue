@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary bg-gradient mb-1">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-1">
         <div class="container-fluid">
             <router-link class="navbar-brand pb-2" aria-current="page" :to="{ name: 'home' }">epm0dev.me
             </router-link>
