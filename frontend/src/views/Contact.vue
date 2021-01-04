@@ -48,7 +48,7 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col form-group">
-                            <div class="d-grid gap-2 px-5">
+                            <div class="d-grid gap-2">
                                 <button type="submit" class="btn btn-lg btn-primary mb-2">Submit</button>
                             </div>
                         </div>

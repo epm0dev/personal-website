@@ -29,7 +29,7 @@
 
 <script>
 import NavBar from '../components/NavBar'
-import BlogPostPage from "@/components/BlogPostPage";
+import BlogPostPage from "../components/BlogPostPage";
 import {mapState} from 'vuex'
 
 export default {

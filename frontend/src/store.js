@@ -19,6 +19,21 @@ const getBlogPosts = (page, posts, resolve, reject) => {
         })
 }
 
+const getFeedActivity = (page, posts, resolve, reject) => {
+    getAPI.get('/feed/?page=' + page)
+        .then(response => {
+            const retrievedActivity = posts.concat({page: page, activity: response.data.results})
+            if (response.data.next !== null) {
+                getFeedActivity(page + 1, retrievedActivity, resolve, reject)
+            } else {
+                resolve(retrievedActivity)
+            }
+        })
+        .catch(err => {
+            reject(err)
+        })
+}
+
 export default new Vuex.Store({
     state: {
         accessToken: null,
@@ -30,7 +45,9 @@ export default new Vuex.Store({
         },
         project: {},
         blogPosts: [],
-        numBlogPostPages: 0
+        numBlogPostPages: 0,
+        feedActivity: [],
+        numFeedActivityPages: 0
     },
     mutations: {
         updateStorage(state, {access, refresh}) {
@@ -52,6 +69,12 @@ export default new Vuex.Store({
         },
         setNumBlogPostPages(state) {
             state.numBlogPostPages = state.blogPosts.length
+        },
+        setFeedActivity(state, {activity}) {
+            state.feedActivity = activity
+        },
+        setNumFeedActivityPages(state) {
+            state.numFeedActivityPages = state.numFeedActivityPages.length
         }
     },
     getters: {
@@ -125,6 +148,17 @@ export default new Vuex.Store({
                         posts: response
                     })
                     context.commit('setNumBlogPostPages')
+                })
+        },
+        loadFeedActivity(context) {
+            return new Promise((resolve, reject) => {
+                getFeedActivity(1, [], resolve, reject)
+            })
+                .then(response => {
+                    context.commit('setFeedActivity', {
+                        activity: response
+                    })
+                    context.commit('setNumFeedActivityPages')
                 })
         }
     }
