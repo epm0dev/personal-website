@@ -1,7 +1,5 @@
 from rest_framework import viewsets
-from rest_framework.decorators import action
 from rest_framework.response import Response
-
 from .serializers import ProjectSerializer, ProjectDetailSerializer, KeywordSerializer
 from .models import Project, DisplayCategory
 

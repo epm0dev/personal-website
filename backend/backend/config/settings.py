@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'rest_framework_simplejwt.token_blacklist',
+    'resume',
     'contact',
     'projects',
     'blog',
@@ -136,6 +137,10 @@ CELERY_RESULT_BACKEND = f'redis://{os.environ.get("REDIS_HOST")}:6379'
 CELERY_BEAT_SCHEDULE = {
     'send_contact_form_digest': {
         'task': 'contact.tasks.send_contact_form_digest',
-        'schedule': crontab(hour=9),
+        'schedule': crontab(minute='*/1'),
     },
+    'check_for_new_resume_version': {
+        'task': 'resume.tasks.check_for_new_resume_version',
+        'schedule': crontab(minute='*/1')
+    }
 }
