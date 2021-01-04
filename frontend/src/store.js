@@ -4,6 +4,21 @@ import {getAPI} from './axios-api'
 
 Vue.use(Vuex)
 
+const getProjects = (category, page, projects, resolve, reject) => {
+    getAPI.get('/projects/?category=' + category + '&page=' + page)
+        .then(response => {
+            const retrievedProjects = projects.concat(response.data.results)
+            if (response.data.next != null) {
+                getProjects(category, page + 1, retrievedProjects, resolve, reject)
+            } else {
+                resolve(retrievedProjects)
+            }
+        })
+        .catch(err => {
+            reject(err)
+        })
+}
+
 const getBlogPosts = (page, posts, resolve, reject) => {
     getAPI.get('/blog/?page=' + page)
         .then(response => {
@@ -103,29 +118,28 @@ export default new Vuex.Store({
                     })
             })
         },
-        loadProjects(context) {
+        loadFeaturedProjects(context) {
             return new Promise((resolve, reject) => {
-                getAPI.get('/projects/?category=featured'/*, {headers: {Authorization: `Bearer ${this.state.accessToken}`}}*/)
-                    .then(response => {
-                        context.commit('setProjectCategory', {category: 'featured', projects: response.data.results})
-                        resolve()
-                    }).catch(err => {
-                    reject(err)
-                })
-                getAPI.get('/projects/?category=general'/*, {headers: {Authorization: `Bearer ${this.state.accessToken}`}}*/)
-                    .then(response => {
-                        context.commit('setProjectCategory', {category: 'general', projects: response.data.results})
-                        resolve()
-                    }).catch(err => {
-                    reject(err)
-                })
-                getAPI.get('/projects/?category=archived'/*, {headers: {Authorization: `Bearer ${this.state.accessToken}`}}*/)
-                    .then(response => {
-                        context.commit('setProjectCategory', {category: 'archived', projects: response.data.results})
-                        resolve()
-                    }).catch(err => {
-                    reject(err)
-                })
+                getProjects('featured', 1, [], resolve, reject)
+            })
+                .then(response => {
+                    context.commit('setProjectCategory', {category: 'featured', projects: response})
+            })
+        },
+        loadGeneralProjects(context) {
+            return new Promise((resolve, reject) => {
+                getProjects('general', 1, [], resolve, reject)
+            })
+                .then(response => {
+                    context.commit('setProjectCategory', {category: 'general', projects: response})
+            })
+        },
+        loadArchivedProjects(context) {
+            return new Promise((resolve, reject) => {
+                getProjects('archived', 1, [], resolve, reject)
+            })
+                .then(response => {
+                    context.commit('setProjectCategory', {category: 'archived', projects: response})
             })
         },
         loadProject(context, payload) {

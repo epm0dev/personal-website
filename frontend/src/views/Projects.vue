@@ -23,7 +23,9 @@ export default {
     },
     computed: mapState(['projects']),
     created() {
-        this.$store.dispatch('loadProjects')
+        this.$store.dispatch('loadFeaturedProjects')
+        this.$store.dispatch('loadGeneralProjects')
+        this.$store.dispatch('loadArchivedProjects')
     }
 }
 </script>
