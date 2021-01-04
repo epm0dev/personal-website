@@ -3,7 +3,7 @@
         <NavBar></NavBar>
         <div class="container">
             <h1 class="text-center mt-3 mb-0">Feed</h1>
-            <div class="container-fluid">
+            <div class="container">
                 <hr class="mb-0">
                 <ActivityPage :class="{'d-none': currentPage !== activityPage.page}"
                               v-for="activityPage in feedActivity"

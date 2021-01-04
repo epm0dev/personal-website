@@ -58,7 +58,7 @@ class ActivityViewSet(viewsets.ViewSet):
 
         results = sorted(
             chain.from_iterable(data for data in serializer_data if data is not None),
-            key=lambda x: x['datetime_created'],
+            key=lambda x: f"{x['date_created']} {x['time_created']}",
             reverse=True
         )
 

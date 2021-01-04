@@ -1,13 +1,13 @@
 <template>
     <div>
         <NavBar></NavBar>
-        <div class="container">
+        <div class="container mt-3">
             <h1>{{project.title}}</h1>
             <div>
-                <small class="text-muted">This project was created {{project.datetime_created}}</small>
+                <small class="text-muted">Created {{project.date_created}} at {{project.time_created}}</small>
             </div>
             <div>
-                <small class="text-muted">This project was last updated {{project.datetime_changed}}</small>
+                <small class="text-muted">Last updated {{project.date_changed}} at {{project.time_changed}}</small>
             </div>
             <hr>
             <p class="lead">{{project.description}}</p>

@@ -6,10 +6,10 @@
                 <h5 class="card-subtitle text-muted mb-2">{{ post.subtitle }}</h5>
                 <p class="card-text">{{ post.contents }}</p>
                 <div>
-                    <small class="text-muted">This post was created {{ post.datetime_created }}</small>
+                    <small class="text-muted">Created {{post.date_changed}} at {{post.time_changed}}</small>
                 </div>
                 <div>
-                    <small class="text-muted">This post was last updated {{ post.datetime_changed }}</small>
+                    <small class="text-muted">Last updated {{post.date_changed}} at {{post.time_changed}}</small>
                 </div>
             </div>
         </div>

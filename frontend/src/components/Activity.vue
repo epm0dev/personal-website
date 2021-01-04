@@ -4,7 +4,7 @@
             <div class="card-body">
                 <h5>{{ activity.text }}</h5>
                 <div>
-                    <small class="text-muted">{{ activity.datetime_created }}</small>
+                    <small class="text-muted">Created {{ activity.date_created }} at {{ activity.time_created }}</small>
                 </div>
             </div>
         </div>

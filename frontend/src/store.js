@@ -74,7 +74,7 @@ export default new Vuex.Store({
             state.feedActivity = activity
         },
         setNumFeedActivityPages(state) {
-            state.numFeedActivityPages = state.numFeedActivityPages.length
+            state.numFeedActivityPages = state.feedActivity.length
         }
     },
     getters: {
