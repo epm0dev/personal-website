@@ -10,8 +10,7 @@
                 <small class="text-muted">This project was last updated {{project.datetime_changed}}</small>
             </div>
             <hr>
-            <p>{{project.description}}</p>
-            <hr>
+            <p class="lead">{{project.description}}</p>
             <p>{{project.description_verbose}}</p>
         </div>
     </div>

@@ -52,6 +52,6 @@ class ProjectDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         fields = [
-            'pk', 'url', 'title', 'description', 'description_verbose', 'datetime_created', 'datetime_changed', 'phase',
-            'category', 'keywords'
+            'pk', 'url', 'title', 'description', 'description_verbose', 'date_created', 'time_created', 'date_changed',
+            'time_changed', 'phase', 'category', 'keywords'
         ]

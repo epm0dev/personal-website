@@ -118,6 +118,22 @@ class Project(models.Model):
     def category(self):
         return DisplayCategory(self._category).label
 
+    @property
+    def date_created(self):
+        return self.datetime_created.strftime('%m-%d-%Y')
+
+    @property
+    def time_created(self):
+        return self.datetime_created.strftime('%H:%M:%S')
+
+    @property
+    def date_changed(self):
+        return self.datetime_changed.strftime('%m-%d-%Y')
+
+    @property
+    def time_changed(self):
+        return self.datetime_changed.strftime('%H:%M:%S')
+
     # Methods
     def __str__(self):
         """

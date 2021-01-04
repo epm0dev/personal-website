@@ -40,6 +40,23 @@ class Post(models.Model):
         blank=True
     )
 
+    # Properties
+    @property
+    def date_created(self):
+        return self.datetime_created.strftime('%m-%d-%Y')
+
+    @property
+    def time_created(self):
+        return self.datetime_created.strftime('%H:%M:%S')
+
+    @property
+    def date_changed(self):
+        return self.datetime_created.strftime('%m-%d-%Y')
+
+    @property
+    def time_changed(self):
+        return self.datetime_created.strftime('%H:%M:%S')
+
     # Methods
     def __str__(self):
         """

@@ -22,7 +22,7 @@ class ProjectCreatedActivitySerializer(ActivitySerializerBase):
 
     class Meta:
         model = ProjectCreatedActivity
-        fields = ['datetime_created', 'text', 'project']
+        fields = ['pk', 'date_created', 'time_created', 'text', 'project']
 
 
 class ProjectEditedActivitySerializer(ActivitySerializerBase):
@@ -33,7 +33,7 @@ class ProjectEditedActivitySerializer(ActivitySerializerBase):
 
     class Meta:
         model = ProjectEditedActivity
-        fields = ['datetime_created', 'text', 'project']
+        fields = ['pk', 'date_created', 'time_created', 'text', 'project']
 
 
 class PostCreatedActivitySerializer(ActivitySerializerBase):
@@ -44,7 +44,7 @@ class PostCreatedActivitySerializer(ActivitySerializerBase):
 
     class Meta:
         model = PostCreatedActivity
-        fields = ['datetime_created', 'text', 'post']
+        fields = ['pk', 'date_created', 'time_created', 'text', 'post']
 
 
 class PostEditedActivitySerializer(ActivitySerializerBase):
@@ -55,4 +55,4 @@ class PostEditedActivitySerializer(ActivitySerializerBase):
 
     class Meta:
         model = PostEditedActivity
-        fields = ['datetime_created', 'text', 'post']
+        fields = ['pk', 'date_created', 'time_created', 'text', 'post']

@@ -24,6 +24,15 @@ class ProjectActivityBase(models.Model):
         related_name='%(app_label)s_%(class)s_related'
     )
 
+    # Properties
+    @property
+    def date_created(self):
+        return self.datetime_created.strftime('%m-%d-%Y')
+
+    @property
+    def time_created(self):
+        return self.datetime_created.strftime('%H:%M:%S')
+
     class Meta:
         abstract = True
         ordering = ['-datetime_created']
@@ -90,6 +99,15 @@ class PostActivityBase(models.Model):
         on_delete=models.CASCADE,
         related_name='%(class)s_related'
     )
+
+    # Properties
+    @property
+    def date_created(self):
+        return self.datetime_created.strftime('%m-%d-%Y')
+
+    @property
+    def time_created(self):
+        return self.datetime_created.strftime('%H:%M:%S')
 
     class Meta:
         abstract = True
