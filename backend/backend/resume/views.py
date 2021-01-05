@@ -6,7 +6,7 @@ from .models import ResumeOutline
 
 class ResumeOutlineViewSet(viewsets.ModelViewSet):
     """
-    TODO Docs
+    API endpoint for listing and retrieving resume outlines.
     """
     serializer_class = ResumeOutlineSerializer
     queryset = ResumeOutline.objects.all()

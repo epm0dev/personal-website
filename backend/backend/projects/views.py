@@ -6,12 +6,16 @@ from .models import Project, DisplayCategory
 
 class ProjectViewSet(viewsets.ModelViewSet):
     """
-    TODO Docs
+    API endpoint for listing and retrieving blog posts.
     """
 
     def get_queryset(self):
         """
-        TODO Docs
+        A method which dynamically determines the viewset's queryset, allowing for filtering of projects based on their
+        display category. Project objects are filtered by specifying a category with a query parameter when requesting
+        projects.
+
+        :returns: The dynamically chosen queryset for listing and retrieving project objects from.
         """
         category = self.request.query_params.get('category', None)
 
@@ -28,7 +32,11 @@ class ProjectViewSet(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         """
-        TODO Docs
+        A method which dynamically determines the serializer class to use for project objects depending on the action
+        of a request. If a specific project object is being retrieved, use the serializer class which returns more of
+        project's fields, otherwise (namely for the list action) use the less detailed project serializer class.
+
+        :returns: The serializer class to use when serializing and deserializing project objects.
         """
         if self.action == 'retrieve':
             return ProjectDetailSerializer
@@ -37,6 +45,6 @@ class ProjectViewSet(viewsets.ModelViewSet):
 
 class KeywordViewSet(viewsets.ModelViewSet):
     """
-    TODO Docs
+    API endpoint for reading and writing keyword objects.
     """
     serializer_class = KeywordSerializer

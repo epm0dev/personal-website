@@ -5,7 +5,7 @@ from .serializers import PostSerializer
 
 class PostViewSet(viewsets.ModelViewSet):
     """
-    TODO Docs
+    API endpoint for listing and retrieving blog posts.
     """
     serializer_class = PostSerializer
     queryset = Post.objects.all()
