@@ -4,9 +4,9 @@ from .models import Post
 
 class PostSerializer(serializers.ModelSerializer):
     """
-    TODO Docs
+    A serializer for the Post model which includes most of its fields as well as its formatted date/time created and
+    date/time changed properties.
     """
-
     class Meta:
         model = Post
         fields = [

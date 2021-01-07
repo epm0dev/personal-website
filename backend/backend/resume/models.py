@@ -3,7 +3,7 @@ from django.db import models
 
 class ResumeOutline(models.Model):
     """
-    TODO Docs
+    A model for resume outlines. Resume outline objects only contain the date they were uploaded.
     """
 
     # Standard fields
@@ -11,12 +11,17 @@ class ResumeOutline(models.Model):
 
     # Methods
     def __str__(self):
+        """
+        A method which defines the string representation of a resume outline object to contain the date when it was
+        uploaded.
+        """
         return f'Resume Version: {self.date_uploaded.strftime("%m-%d-%Y")}'
 
 
 class ResumeSection(models.Model):
     """
-    TODO Docs
+    A model for sections of a resume outline. Resume section objects contain a heading, their content and the resume
+    outline object that they are related to.
     """
 
     # Standard fields
@@ -40,11 +45,15 @@ class ResumeSection(models.Model):
 
     # Methods
     def __str__(self):
+        """
+        A method which defines the string representation of a resume section object to contain the its heading as well
+        as the string representation of its related resume outline object.
+        """
         return f'"{self.heading}" section of {self.outline}'
 
     class Meta:
         """
-        TODO Docs
+        A class which contains metadata for the resume section class that specifies that resume section objects should
+        be ordered by ascending primary key, or, in other words, the order in which they were created.
         """
-
         ordering = ['pk']

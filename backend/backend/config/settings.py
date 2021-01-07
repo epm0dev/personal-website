@@ -1,11 +1,6 @@
-"""
-Django settings for the backend API.
-"""
 from pathlib import Path
 import os
-
 from corsheaders.defaults import default_headers
-
 from celery.schedules import crontab
 
 

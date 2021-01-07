@@ -10,6 +10,7 @@ from feed.views import ActivityViewSet
 from resume.views import ResumeOutlineViewSet
 
 
+# Initialize a default router object and register API views with it
 router = DefaultRouter()
 router.register(r'projects', ProjectViewSet, basename='project')
 router.register(r'contact', ContactFormViewSet, basename='contact')
@@ -17,6 +18,7 @@ router.register(r'blog', PostViewSet, basename='blog')
 router.register(r'feed', ActivityViewSet, basename='feed')
 router.register(r'resume', ResumeOutlineViewSet, basename='resume')
 
+# Define the Django applications URL patterns
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', RedirectView.as_view(url='api/')),

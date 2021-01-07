@@ -6,7 +6,7 @@ from .serializers import ContactFormSerializer
 
 class ContactFormViewSet(viewsets.ModelViewSet):
     """
-    TODO Docs
+    API endpoint for listing and retrieving contact forms.
     """
     serializer_class = ContactFormSerializer
     queryset = ContactForm.objects.all()

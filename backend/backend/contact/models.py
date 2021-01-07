@@ -3,7 +3,9 @@ from django.db import models
 
 class ContactForm(models.Model):
     """
-    TODO Docs
+    A model for contact form submissions. Contact forms objects contain the name and contact information of the person
+    who submitted the form, a message, the date and time the form was submitted, and a field which represents whether
+    or not the form has been relayed in a daily digest email.
     """
 
     # Standard fields
@@ -47,5 +49,9 @@ class ContactForm(models.Model):
 
     # Methods
     def __str__(self):
+        """
+        A method which defines the string representation of a contact form object to contain the first and last name of
+        the person who submitted the form as well as the time and date the form was submitted.
+        """
         return f'{self.first_name} {self.last_name} submitted a contact form at {self.datetime_created.time()} on ' \
                f'{self.datetime_created.date()}'
