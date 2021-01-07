@@ -103,11 +103,11 @@ export default new Vuex.Store({
                 context.commit('destroyToken')
             }
         },
-        userLogin(context, usercredentials) {
+        userLogin(context, userCredentials) {
             return new Promise((resolve, reject) => {
                 getAPI.post('/token/', {
-                    username: usercredentials.username,
-                    password: usercredentials.password
+                    username: userCredentials.username,
+                    password: userCredentials.password
                 })
                     .then(response => {
                         context.commit('updateStorage', {access: response.data.access, refresh: response.data.refresh})
