@@ -154,7 +154,6 @@ class Project(models.Model):
         else:
             celery.current_app.send_task('projects.tasks.new_project_edited_activity', (self.pk,))
 
-
     class Meta:
         """
         TODO Docs

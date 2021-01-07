@@ -23,13 +23,23 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='postcreatedactivity',
             name='post',
-            field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, related_name='postcreatedactivity_related', to='blog.post'),
+            field=models.ForeignKey(
+                default=0,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name='postcreatedactivity_related',
+                to='blog.post'
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
             model_name='posteditedactivity',
             name='post',
-            field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, related_name='posteditedactivity_related', to='blog.post'),
+            field=models.ForeignKey(
+                default=0,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name='posteditedactivity_related',
+                to='blog.post'
+            ),
             preserve_default=False,
         ),
     ]

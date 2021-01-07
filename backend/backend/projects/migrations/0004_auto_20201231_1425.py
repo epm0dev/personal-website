@@ -17,6 +17,9 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='project',
             name='description',
-            field=models.TextField(default='A short-form description for this project has yet to be added.', max_length=500),
+            field=models.TextField(
+                default='A short-form description for this project has yet to be added.',
+                max_length=500
+            ),
         ),
     ]

@@ -47,4 +47,5 @@ class ContactForm(models.Model):
 
     # Methods
     def __str__(self):
-        return f'{self.first_name} {self.last_name} submitted a contact form at {self.datetime_created.time()} on {self.datetime_created.date()}'
+        return f'{self.first_name} {self.last_name} submitted a contact form at {self.datetime_created.time()} on ' \
+               f'{self.datetime_created.date()}'

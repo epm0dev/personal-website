@@ -1,5 +1,6 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
+from django.http.response import HttpResponseNotFound
 from .serializers import ProjectSerializer, ProjectDetailSerializer, KeywordSerializer
 from .models import Project, DisplayCategory
 
@@ -27,8 +28,7 @@ class ProjectViewSet(viewsets.ModelViewSet):
             elif category == 'archived':
                 return Project.archived.all()
 
-        # TODO HTTP Error here?
-        return Project.objects.all()
+        return HttpResponseNotFound('<h1>Page not found</h1>')
 
     def get_serializer_class(self):
         """

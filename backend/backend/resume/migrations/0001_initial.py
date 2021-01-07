@@ -25,7 +25,11 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('heading', models.CharField(default='Section Heading', max_length=50)),
                 ('content', models.TextField(default='Section content', max_length=1000)),
-                ('outline', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='sections', to='resume.resumeoutline')),
+                ('outline', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    related_name='sections',
+                    to='resume.resumeoutline'
+                )),
             ],
             options={
                 'ordering': ['pk'],

@@ -48,7 +48,8 @@ class ProjectCreatedActivity(ProjectActivityBase):
         """
         TODO Docs
         """
-        return f'Created Project - {self.project.title} at {self.datetime_created.time()} on {self.datetime_created.date()}'
+        return f'Created Project - {self.project.title} at {self.datetime_created.time()} on ' \
+               f'{self.datetime_created.date()}'
 
     def save(self, *args, **kwargs):
         """
@@ -56,7 +57,6 @@ class ProjectCreatedActivity(ProjectActivityBase):
         """
         self.text = f'I created a new project titled {self.project.title}!'
         super(ProjectCreatedActivity, self).save(*args, **kwargs)
-
 
 
 class ProjectEditedActivity(ProjectActivityBase):
@@ -69,7 +69,8 @@ class ProjectEditedActivity(ProjectActivityBase):
         """
         TODO Docs
         """
-        return f'Edited Project - {self.project.title} at {self.datetime_created.time()} on {self.datetime_created.date()}'
+        return f'Edited Project - {self.project.title} at {self.datetime_created.time()} on ' \
+               f'{self.datetime_created.date()}'
 
     def save(self, *args, **kwargs):
         """

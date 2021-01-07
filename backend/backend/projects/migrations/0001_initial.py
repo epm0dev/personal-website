@@ -27,11 +27,17 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=50, unique=True)),
                 ('description', models.TextField(max_length=500)),
-                ('description_verbose', models.TextField(default='A long-form description for this project has yet to be added.', max_length=10000)),
+                ('description_verbose', models.TextField(default='A long-form description for this project has yet to '
+                                                                 'be added.', max_length=10000)),
                 ('datetime_created', models.DateTimeField(auto_now_add=True)),
                 ('datetime_changed', models.DateTimeField(auto_now=True)),
-                ('phase', models.PositiveSmallIntegerField(choices=[(1, 'Design'), (2, 'Implementation'), (3, 'Integration'), (4, 'Maintenance')], default=1)),
-                ('category', models.PositiveIntegerField(choices=[(1, 'Featured'), (2, 'General'), (3, 'Archived')], default=2)),
+                ('phase', models.PositiveSmallIntegerField(
+                    choices=[(1, 'Design'), (2, 'Implementation'), (3, 'Integration'), (4, 'Maintenance')],
+                    default=1)),
+                ('category', models.PositiveIntegerField(
+                    choices=[(1, 'Featured'), (2, 'General'), (3, 'Archived')],
+                    default=2)
+                 ),
                 ('_keywords', models.ManyToManyField(related_name='projects', to='projects.Keyword')),
             ],
             options={

@@ -18,10 +18,17 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=100)),
-                ('contents', models.TextField(default='A long-form description for this project has yet to be added.', max_length=10000)),
+                ('contents', models.TextField(
+                    default='A long-form description for this project has yet to be added.',
+                    max_length=10000)
+                 ),
                 ('datetime_created', models.DateTimeField(auto_now_add=True)),
                 ('datetime_changed', models.DateTimeField(auto_now=True)),
-                ('project', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='projects', to='projects.project')),
+                ('project', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    related_name='projects',
+                    to='projects.project'
+                )),
             ],
             options={
                 'ordering': ['-datetime_created'],
