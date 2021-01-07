@@ -4,11 +4,17 @@ from .models import ProjectCreatedActivity, ProjectEditedActivity, PostCreatedAc
 
 class ActivitySerializerBase(serializers.ModelSerializer):
     """
-    TODO Docs
+    An abstract serializer for feed activity models which defines additional behavior when converting activity objects
+    to their serialized representation.
     """
     object_type = None
 
     def to_representation(self, instance):
+        """
+        A method which overrides the default serializer to_represtentation method to add a type field to the serialized
+        representation of feed activity items. Each subclass of this abstract base class should specify the value to
+        be stored with the type key as an attribute name object_type.
+        """
         ret = super().to_representation(instance)
         ret['type'] = self.object_type
         return ret
@@ -16,7 +22,8 @@ class ActivitySerializerBase(serializers.ModelSerializer):
 
 class ProjectCreatedActivitySerializer(ActivitySerializerBase):
     """
-    TODO Docs
+    A serializer for the ProjectCreatedActivity model which includes most of its fields as well as its formatted
+    date/time created properties.
     """
     object_type = 'project_created_activity'
 
@@ -27,7 +34,8 @@ class ProjectCreatedActivitySerializer(ActivitySerializerBase):
 
 class ProjectEditedActivitySerializer(ActivitySerializerBase):
     """
-    TODO Docs
+    A serializer for the ProjectEditedActivity model which includes most of its fields as well as its formatted
+    date/time created properties.
     """
     object_type = 'project_edited_activity'
 
@@ -38,7 +46,8 @@ class ProjectEditedActivitySerializer(ActivitySerializerBase):
 
 class PostCreatedActivitySerializer(ActivitySerializerBase):
     """
-    TODO Docs
+    A serializer for the PostCreatedActivity model which includes most of its fields as well as its formatted
+    date/time created properties.
     """
     object_type = 'post_created_activity'
 
@@ -49,7 +58,8 @@ class PostCreatedActivitySerializer(ActivitySerializerBase):
 
 class PostEditedActivitySerializer(ActivitySerializerBase):
     """
-    TODO Docs
+    A serializer for the PostEditedActivity model which includes most of its fields as well as its formatted
+    date/time created properties.
     """
     object_type = 'post_edited_activity'
 

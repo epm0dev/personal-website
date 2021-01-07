@@ -4,9 +4,8 @@ from .models import Project, Keyword
 
 class KeywordSerializer(serializers.ModelSerializer):
     """
-    TODO Docs
+    A serializer for the Keyword model which includes its pk and word fields.
     """
-
     class Meta:
         model = Keyword
         fields = ['pk', 'word']
@@ -14,7 +13,9 @@ class KeywordSerializer(serializers.ModelSerializer):
 
 class ProjectSerializer(serializers.ModelSerializer):
     """
-    TODO Docs
+    A serializer for the Project model for use when listing projects and, therefore, does not include all of each
+    project object's details. It does, however, include each project object's related keywords and their phase and
+    category properties.
     """
     keywords = KeywordSerializer(many=True, read_only=True)
     phase = serializers.SerializerMethodField()
@@ -35,7 +36,8 @@ class ProjectSerializer(serializers.ModelSerializer):
 
 class ProjectDetailSerializer(serializers.ModelSerializer):
     """
-    TODO Docs
+    A serializer for the Project model for use when retrieving a single project object and, therefore, includes all of
+    its details.
     """
     keywords = KeywordSerializer(many=True, read_only=True)
     phase = serializers.SerializerMethodField()

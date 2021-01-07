@@ -6,7 +6,7 @@ from .models import Project
 @shared_task
 def new_project_created_activity(pk):
     """
-    TODO Docs
+    A Celery task which creates a new activity feed object and is executed when a new project object is created.
     """
     print(f'New project created with primary key: {pk}')
     print('Creating related feed activity...')
@@ -17,7 +17,7 @@ def new_project_created_activity(pk):
 @shared_task
 def new_project_edited_activity(pk):
     """
-    TODO Docs
+    A Celery task which creates a new activity feed object and is executed when an existing project object is edited.
     """
     print(f'Existing project edited with primary key: {pk}')
     print('Creating related feed activity...')
