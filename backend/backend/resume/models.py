@@ -17,6 +17,13 @@ class ResumeOutline(models.Model):
         """
         return f'Resume Version: {self.date_uploaded.strftime("%m-%d-%Y")}'
 
+    class Meta:
+        """
+        A class which contains metadata for the resume outline class that defines the field to determine the latest
+        resume outline from.
+        """
+        get_latest_by = ['date_uploaded']
+
 
 class ResumeSection(models.Model):
     """
