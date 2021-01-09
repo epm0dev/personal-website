@@ -62,7 +62,8 @@ export default new Vuex.Store({
         blogPosts: [],
         numBlogPostPages: 0,
         feedActivity: [],
-        numFeedActivityPages: 0
+        numFeedActivityPages: 0,
+        resume: {}
     },
     mutations: {
         updateStorage(state, {access, refresh}) {
@@ -90,6 +91,9 @@ export default new Vuex.Store({
         },
         setNumFeedActivityPages(state) {
             state.numFeedActivityPages = state.feedActivity.length
+        },
+        setResume(state, {resume}) {
+            state.resume = resume
         }
     },
     getters: {
@@ -124,7 +128,7 @@ export default new Vuex.Store({
             })
                 .then(response => {
                     context.commit('setProjectCategory', {category: 'featured', projects: response})
-            })
+                })
         },
         loadGeneralProjects(context) {
             return new Promise((resolve, reject) => {
@@ -132,7 +136,7 @@ export default new Vuex.Store({
             })
                 .then(response => {
                     context.commit('setProjectCategory', {category: 'general', projects: response})
-            })
+                })
         },
         loadArchivedProjects(context) {
             return new Promise((resolve, reject) => {
@@ -140,11 +144,11 @@ export default new Vuex.Store({
             })
                 .then(response => {
                     context.commit('setProjectCategory', {category: 'archived', projects: response})
-            })
+                })
         },
         loadProject(context, payload) {
             return new Promise((resolve, reject) => {
-                getAPI.get('/projects/' + payload.id,/* {headers: {Authorization: `Bearer ${this.state.accessToken}`}}*/)
+                getAPI.get('/projects/' + payload.id)
                     .then(response => {
                         context.commit('setCurrentProject', {project: response.data})
                         resolve()
@@ -174,6 +178,26 @@ export default new Vuex.Store({
                     })
                     context.commit('setNumFeedActivityPages')
                 })
+        },
+        loadResume(context) {
+            return new Promise((resolve, reject) => {
+                getAPI.get('/resume/latest/')
+                    .then(response => {
+                        var data = response.data;
+                        data.summary = data.sections.filter(function (el) {
+                            return el.heading.toLowerCase() === 'summary'
+                        })[0].content;
+                        data.sections = data.sections.filter(function (el) {
+                            return el.heading.toLowerCase() !== 'summary'
+                        })
+
+                        context.commit('setResume', {resume: data})
+                        resolve()
+                    })
+                    .catch(err => {
+                        reject(err)
+                    })
+            })
         }
     }
 })
