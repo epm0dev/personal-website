@@ -94,9 +94,9 @@ class Post(models.Model):
 
         # Schedule a celery task corresponding to whether the post object was created or edited
         if new_post:
-            celery.current_app.send_task('blog.tasks.new_post_created_activity', (self.pk,))
+            celery.current_app.send_task('blog.tasks.new_post_created_activity', args=(self.pk,), countdown=5.)
         else:
-            celery.current_app.send_task('blog.tasks.new_post_edited_activity', (self.pk,))
+            celery.current_app.send_task('blog.tasks.new_post_edited_activity', args=(self.pk,), countdown=5.)
 
     class Meta:
         """

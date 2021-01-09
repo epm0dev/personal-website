@@ -18,6 +18,9 @@ class ProjectViewSet(viewsets.ModelViewSet):
 
         :returns: The dynamically chosen queryset for listing and retrieving project objects from.
         """
+        if self.action == 'retrieve':
+            return Project.objects.all()
+
         category = self.request.query_params.get('category', None)
 
         if category is not None:

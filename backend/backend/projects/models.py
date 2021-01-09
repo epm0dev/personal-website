@@ -175,9 +175,9 @@ class Project(models.Model):
 
         # Schedule a celery task corresponding to whether the project object was created or edited
         if newProject:
-            celery.current_app.send_task('projects.tasks.new_project_created_activity', (self.pk,))
+            celery.current_app.send_task('projects.tasks.new_project_created_activity', args=(self.pk,), countdown=5.)
         else:
-            celery.current_app.send_task('projects.tasks.new_project_edited_activity', (self.pk,))
+            celery.current_app.send_task('projects.tasks.new_project_edited_activity', args=(self.pk,), countdown=5.)
 
     class Meta:
         """
