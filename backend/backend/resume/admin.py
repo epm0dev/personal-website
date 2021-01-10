@@ -1,7 +1,8 @@
 from django.contrib import admin
-from .models import ResumeOutline, ResumeSection
+from .models import Resume, ResumeSection, ResumeSubsection
 
 
 # Register resume app models to the admin site
-admin.site.register(ResumeOutline)
+admin.site.register(Resume)
 admin.site.register(ResumeSection)
+admin.site.register(ResumeSubsection)

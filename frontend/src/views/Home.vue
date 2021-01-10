@@ -3,23 +3,30 @@
         <NavBar></NavBar>
         <div class="container">
             <div class="container-fluid pt-4">
-                <div class="card">
+                <div class="card border border-2">
                     <div class="card-header bg-primary text-light">
                         <h2 class="mb-0">About Me</h2>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body pt-2">
                         <div class="row">
                             <div class="col-12 col-md-4">
-                                <div class="d-flex justify-content-center">
-                                    <img src="../../public/portrait.png" class="img-fluid rounded-circle py-2 px-md-4"
-                                         alt="portrait">
+                                <div class="row">
+                                    <div class="col-2 col-lg-4 px-0">
+                                        <img src="../../public/portrait.png"
+                                             class="img-fluid rounded-circle ml-3"
+                                             alt="portrait">
+                                    </div>
+                                    <div class="col-10 col-lg-8 pt-4 pt-lg-0">
+                                        <h3 class="text-start text-lg-center m-0 align-text-bottom h-100">Ethan Mancini</h3>
+                                    </div>
                                 </div>
-                                <h3 class="text-center m-0">Ethan Mancini</h3>
-                                <hr class="d-md-none">
+                            </div>
+                            <div class="col-12">
+                                <hr class="d-md-none my-2">
                             </div>
                             <div class="col-12 col-md-8">
                                 <div class="d-flex flex-column justify-content-center h-100">
-                                    <p class="lead fs-2 m-0 p-2 py-0 py-md-2">
+                                    <p class="lead fs-5 fs-md-4 fs-lg-3 m-0 p-2 py-0 py-md-2">
                                         {{ resume.summary }}
                                     </p>
                                 </div>
