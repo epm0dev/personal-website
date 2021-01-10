@@ -71,6 +71,19 @@ class Subsection(SectionBase):
 
         self.strip_pars()
 
+        num_pars = len(self.paragraphs)
+        i = 0
+        while i < num_pars:
+            if self.paragraphs[i].startswith('Relevant coursework completed in') or \
+                    self.paragraphs[i].endswith('(scheduled)'):
+                del self.paragraphs[i]
+                del self.paragraphs[i]
+                num_pars -= 2
+                continue
+
+            i += 1
+
+
     def __str__(self):
         """
         TODO Docs
@@ -131,6 +144,9 @@ class Section(SectionBase):
                 self.subsections.append(Subsection(self.paragraphs[split_indices[i] + 1:]))
             else:
                 self.subsections.append(Subsection(self.paragraphs[split_indices[i] + 1:split_indices[i + 1]]))
+
+            if self.subsections[-1].heading.startswith('Wakefield High School'):
+                del self.subsections[-1]
 
             i += 1
 

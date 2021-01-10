@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="pb-3">
     <div>
         <strong>{{subsection.heading}}</strong>
     </div>

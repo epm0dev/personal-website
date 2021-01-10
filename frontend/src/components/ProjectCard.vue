@@ -8,7 +8,7 @@
     </div>
     <div class="card-body">
         <div>
-            <span class="badge rounded-pill bg-primary bg-gradient mx-1" v-for="keyword in project.keywords" :key="keyword.pk">{{ keyword.word }}</span>
+            <span class="badge rounded-pill bg-secondary mx-1" v-for="keyword in project.keywords" :key="keyword.pk">{{ keyword.word }}</span>
         </div>
         <div :class="{'mt-3': project.keywords.length > 0}">
             {{project.description}}

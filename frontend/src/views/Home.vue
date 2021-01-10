@@ -10,19 +10,22 @@
                     <div class="card-body pt-2">
                         <div class="row">
                             <div class="col-12 col-md-4">
-                                <div class="row">
-                                    <div class="col-2 col-lg-4 px-0">
+                                <div class="row px-2">
+                                    <div class="col-10 col-md-12 d-flex align-items-center d-md-none">
+                                        <h3 class="text-start m-0">Ethan Mancini</h3>
+                                    </div>
+                                    <div class="col-2 col-md-12">
                                         <img src="../../public/portrait.png"
-                                             class="img-fluid rounded-circle ml-3"
+                                             class="img-fluid rounded-circle p-md-2 px-xl-4"
                                              alt="portrait">
                                     </div>
-                                    <div class="col-10 col-lg-8 pt-4 pt-lg-0">
-                                        <h3 class="text-start text-lg-center m-0 align-text-bottom h-100">Ethan Mancini</h3>
+                                    <div class="col-12 d-none d-md-flex align-items-center justify-content-center">
+                                        <h3 class="mb-0">Ethan Mancini</h3>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12">
-                                <hr class="d-md-none my-2">
+                            <div class="col-12 d-md-none">
+                                <hr class="my-2">
                             </div>
                             <div class="col-12 col-md-8">
                                 <div class="d-flex flex-column justify-content-center h-100">

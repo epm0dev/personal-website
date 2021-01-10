@@ -9,13 +9,13 @@
         </h2>
         <div :id="contentId" class="accordion-collapse collapse" :aria-labelledby="headerId"
              data-bs-parent="#resumeAccordion">
-            <div class="accordion-body">
+            <div class="accordion-body pb-0">
                 <div v-if="section.subsections.length !== 0">
                     <ResumeSubsectionItem v-for="subsection in section.subsections" :key="subsection.pk"
                                           :subsection="subsection"></ResumeSubsectionItem>
                 </div>
                 <div v-if="section.subsections.length === 0">
-                    <ul class="mb-0">
+                    <ul class="mb-0 pb-3">
                         <li v-for="p in section.paragraphs" :key="p">{{ p }}</li>
                     </ul>
                 </div>
