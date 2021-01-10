@@ -186,7 +186,7 @@ export default new Vuex.Store({
                         var data = response.data;
                         data.summary = data.sections.filter(function (el) {
                             return el.heading.toLowerCase() === 'summary'
-                        })[0].content;
+                        })[0].paragraphs[0];
                         data.sections = data.sections.filter(function (el) {
                             return el.heading.toLowerCase() !== 'summary'
                         })

@@ -10,15 +10,28 @@
         <div :id="contentId" class="accordion-collapse collapse" :aria-labelledby="headerId"
              data-bs-parent="#resumeAccordion">
             <div class="accordion-body">
-                {{section.content}}
+                <div v-if="section.subsections.length !== 0">
+                    <ResumeSubsectionItem v-for="subsection in section.subsections" :key="subsection.pk"
+                                          :subsection="subsection"></ResumeSubsectionItem>
+                </div>
+                <div v-if="section.subsections.length === 0">
+                    <ul class="mb-0">
+                        <li v-for="p in section.paragraphs" :key="p">{{ p }}</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import ResumeSubsectionItem from "@/components/ResumeSubsectionItem";
+
 export default {
     name: "ResumeSectionItem",
+    components: {
+        ResumeSubsectionItem
+    },
     props: {
         section: {required: true, type: Object}
     },

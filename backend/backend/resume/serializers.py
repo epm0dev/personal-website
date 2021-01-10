@@ -25,11 +25,11 @@ class ResumeSectionSerializer(serializers.ModelSerializer):
 
 class ResumeSerializer(serializers.ModelSerializer):
     """
-    A serializer for the Resume model which includes its pk and date_uploaded fields, as well as a nested list of
-    all of a resume's related resume section objects, serialized.
+    A serializer for the Resume model which includes its pk, date_uploaded and time_uploaded fields, as well as a nested
+    list of all of a resume's related resume section objects, serialized.
     """
     sections = ResumeSectionSerializer(many=True, read_only=True)
 
     class Meta:
         model = Resume
-        fields = ['pk', 'date_uploaded', 'sections']
+        fields = ['pk', 'date_uploaded', 'time_uploaded', 'sections']

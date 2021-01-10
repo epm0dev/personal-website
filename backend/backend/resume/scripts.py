@@ -3,11 +3,21 @@ from docx2python import docx2python
 
 
 class SectionBase:
+    """
+    TODO Docs
+    """
+
     def __init__(self):
+        """
+        TODO Docs
+        """
         self.heading = None
         self.paragraphs = []
 
     def strip_pars(self):
+        """
+        TODO Docs
+        """
         for i in range(len(self.paragraphs)):
             p = self.paragraphs[i]
             start = 0
@@ -19,12 +29,21 @@ class SectionBase:
 
 
 class Subsection(SectionBase):
+    """
+    TODO Docs
+    """
     def __init__(self, pars: List[str]):
+        """
+        TODO Docs
+        """
         super().__init__()
         self.subtext = None
         self.create(pars)
 
     def create(self, pars: List[str]):
+        """
+        TODO Docs
+        """
         # Find index of first letter in first paragraph
         first = pars[0]
         start = 0
@@ -53,6 +72,9 @@ class Subsection(SectionBase):
         self.strip_pars()
 
     def __str__(self):
+        """
+        TODO Docs
+        """
         ret = f'{self.heading}\n'
 
         if self.subtext:
@@ -65,18 +87,31 @@ class Subsection(SectionBase):
 
 
 class Section(SectionBase):
+    """
+    TODO Docs
+    """
+
     def __init__(self, pars: List[str]):
+        """
+        TODO Docs
+        """
         super().__init__()
         self.subsections = []
         self.create(pars)
 
     def create(self, pars: List[str]):
+        """
+        TODO Docs
+        """
         self.heading = pars[0].title().replace('\t', '')
         self.paragraphs = [self.parse_paragraph(p) for p in pars[1:]]
         self.create_subsections()
         self.strip_pars()
 
     def create_subsections(self):
+        """
+        TODO Docs
+        """
         split_indices = [i for i in range(len(self.paragraphs)) if self.paragraphs[i] == '']
 
         if len(split_indices) == 0:
@@ -101,6 +136,9 @@ class Section(SectionBase):
 
     @staticmethod
     def parse_paragraph(par: str):
+        """
+        TODO Docs
+        """
         # Return an empty string if the paragraph is empty or contains only a tab escape
         if par.strip() in ['', '\t']:
             return ''
@@ -109,6 +147,9 @@ class Section(SectionBase):
         return par
 
     def __str__(self):
+        """
+        TODO Docs
+        """
         ret = f'{self.heading}\n\t- '
 
         if len(self.subsections) == 0:
@@ -120,7 +161,14 @@ class Section(SectionBase):
 
 
 class Resume:
+    """
+    TODO Docs
+    """
+
     def __init__(self, path: str):
+        """
+        TODO Docs
+        """
         self.sections = []
 
         raw = docx2python(path).body[0][0][0]
@@ -130,10 +178,16 @@ class Resume:
             self.sections.append(Section(chunk))
 
     def __str__(self):
+        """
+        TODO Docs
+        """
         return '\n\n'.join([str(s) for s in self.sections])
 
     @staticmethod
     def chunk_raw_body(body: List[str]):
+        """
+        TODO Docs
+        """
         boundaries = []
         num_pars = len(body)
 

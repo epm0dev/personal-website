@@ -2,7 +2,7 @@
     <div>
         <NavBar></NavBar>
         <div class="container">
-            <div class="container-fluid pt-4">
+            <div class="container-fluid pt-4 pb-4">
                 <div class="card border border-2">
                     <div class="card-header bg-primary text-light">
                         <h2 class="mb-0">About Me</h2>

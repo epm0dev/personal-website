@@ -30,6 +30,9 @@ class Resume(models.Model):
     date_uploaded = models.DateField(
         auto_now_add=True
     )
+    time_uploaded = models.TimeField(
+        auto_now_add=True
+    )
 
     # Methods
     def __str__(self):
@@ -43,7 +46,7 @@ class Resume(models.Model):
         A class which contains metadata for the resume class that defines the field to determine the latest resume
         object from.
         """
-        get_latest_by = ['date_uploaded']
+        get_latest_by = ['date_uploaded', 'time_uploaded']
 
 
 class ResumeSectionBase(models.Model):
