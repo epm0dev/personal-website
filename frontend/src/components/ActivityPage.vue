@@ -1,6 +1,6 @@
 <template>
 <div>
-    <Activity v-for="activity in activityPage.activity" :key="activity.pk" :activity="activity"></Activity>
+    <Activity v-for="activity in activityPage.activity" :key="activity.type + activity.pk" :activity="activity"></Activity>
 </div>
 </template>
 

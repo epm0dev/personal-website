@@ -18,16 +18,6 @@ class ProjectSerializer(serializers.ModelSerializer):
     category properties.
     """
     keywords = KeywordSerializer(many=True, read_only=True)
-    phase = serializers.SerializerMethodField()
-    category = serializers.SerializerMethodField()
-
-    @staticmethod
-    def get_phase(obj):
-        return obj.phase
-
-    @staticmethod
-    def get_category(obj):
-        return obj.category
 
     class Meta:
         model = Project
@@ -40,16 +30,6 @@ class ProjectDetailSerializer(serializers.ModelSerializer):
     its details.
     """
     keywords = KeywordSerializer(many=True, read_only=True)
-    phase = serializers.SerializerMethodField()
-    category = serializers.SerializerMethodField()
-
-    @staticmethod
-    def get_phase(obj):
-        return obj.phase
-
-    @staticmethod
-    def get_category(obj):
-        return obj.category
 
     class Meta:
         model = Project

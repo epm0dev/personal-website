@@ -1,38 +1,44 @@
 <template>
-<div class="card">
-    <div class="card-header bg-primary text-light">
-        <h3 class="mb-0">{{project.title}}</h3>
-    </div>
-    <div v-if="!isArchived" class="card-header text-center" :class="phaseColor">
-        <h5 class="mb-0">{{project.phase}}</h5>
-    </div>
-    <div class="card-body">
-        <div>
-            <span class="badge rounded-pill bg-secondary mx-1" v-for="keyword in project.keywords" :key="keyword.pk">{{ keyword.word }}</span>
+    <div class="card transition" @mouseover="hover = true" @mouseleave="hover = false" :class="{hovered: hover}">
+        <div class="card-header bg-primary text-light">
+            <h3 class="mb-0">{{ project.title }}</h3>
         </div>
-        <div :class="{'mt-3': project.keywords.length > 0}">
-            {{project.description}}
+        <div v-if="!isArchived" class="card-header text-center" :class="phaseColor">
+            <h5 class="mb-0">{{ project.phase }}</h5>
+        </div>
+        <div class="card-body">
+            <div>
+                    <span class="badge rounded-pill bg-secondary mx-1" v-for="keyword in project.keywords"
+                          :key="keyword.pk">{{ keyword.word }}</span>
+            </div>
+            <div :class="{'mt-3': project.keywords.length > 0}">
+                {{ project.description }}
+            </div>
+        </div>
+        <div class="card-footer text-muted text-end">
+            <router-link :to="{ name: 'project-detail', params: { id: project.pk } }">
+                Read More <i class="fas fa-external-link-alt"></i>
+            </router-link>
         </div>
     </div>
-    <div class="card-footer text-muted text-end">
-        <router-link :to="{ name: 'project-detail', params: { id: project.pk } }">
-            Read More <i class="fas fa-external-link-alt"></i>
-        </router-link>
-    </div>
-</div>
 </template>
 
 <script>
 export default {
-name: "ProjectCard",
+    name: "ProjectCard",
     props: {
         project: {required: true, type: Object}
     },
+    data() {
+        return {
+            hover: false
+        }
+    },
     computed: {
-        isArchived () {
+        isArchived() {
             return this.project.category === 'Archived'
         },
-        phaseColor () {
+        phaseColor() {
             return {
                 'bg-info': this.project.phase === 'Design',
                 'bg-warning': this.project.phase === 'Implementation',
@@ -46,5 +52,11 @@ name: "ProjectCard",
 </script>
 
 <style scoped>
+.transition {
+    transition: all 0.15s ease;
+}
 
+.hovered {
+    transform: scale(1.1);
+}
 </style>
