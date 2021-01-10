@@ -1,6 +1,7 @@
 from django.db import models
 from projects.models import Project
 from blog.models import Post
+from resume.models import Resume
 
 
 class ProjectActivityBase(models.Model):
@@ -181,3 +182,50 @@ class PostEditedActivity(PostActivityBase):
         """
         self.text = f'I edited my blog post titled {self.post.title}!'
         super(PostEditedActivity, self).save(*args, **kwargs)
+
+
+class ResumeUploadedActivity(models.Model):
+    """
+    A model for feed activity that results from a new resume object being created.
+    """
+
+    # Standard fields
+    datetime_created = models.DateTimeField(
+        auto_now_add=True
+    )
+    text = models.CharField(
+        max_length=200,
+        null=False,
+        default='I uploaded a new version of my resume!'
+    )
+
+    # Relationships
+    resume = models.ForeignKey(
+        Resume,
+        on_delete=models.CASCADE,
+        related_name='%(class)s_related'
+    )
+
+    # Properties
+    @property
+    def date_created(self):
+        """
+        A property which returns the date when the activity was created, formatted for display.
+        """
+        return self.datetime_created.strftime('%m-%d-%Y')
+
+    @property
+    def time_created(self):
+        """
+        A property which returns the time when the activity was created, formatted for display.
+        """
+        return self.datetime_created.strftime('%H:%M:%S')
+
+
+    # Methods
+    def __str__(self):
+        """
+        A method which defines the string representation of a resume uploaded activity object to contain the string
+        representation of the resume new resume object.
+        """
+        return f'Resume Uploaded - {self.resume}'

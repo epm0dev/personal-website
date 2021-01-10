@@ -1,5 +1,7 @@
 from rest_framework import serializers
-from .models import ProjectCreatedActivity, ProjectEditedActivity, PostCreatedActivity, PostEditedActivity
+from .models import (
+    ProjectCreatedActivity, ProjectEditedActivity, PostCreatedActivity, PostEditedActivity, ResumeUploadedActivity
+)
 
 
 class ActivitySerializerBase(serializers.ModelSerializer):
@@ -66,3 +68,15 @@ class PostEditedActivitySerializer(ActivitySerializerBase):
     class Meta:
         model = PostEditedActivity
         fields = ['pk', 'date_created', 'time_created', 'text', 'post']
+
+
+class ResumeUploadedActivitySerializer(ActivitySerializerBase):
+    """
+    A serializer for the ResumeUploadedActivity model which includes most of its fields as well as its formatted
+    date/time created properties.
+    """
+    object_type = 'resume_uploaded_activity'
+
+    class Meta:
+        model = ResumeUploadedActivity
+        fields = ['pk', 'date_created', 'time_created', 'text', 'resume']

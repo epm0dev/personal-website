@@ -133,9 +133,5 @@ CELERY_BEAT_SCHEDULE = {
     'send_contact_form_digest': {
         'task': 'contact.tasks.send_contact_form_digest',
         'schedule': crontab(minute='*/1'),
-    },
-    'check_for_new_resume_version': {
-        'task': 'resume.tasks.check_for_new_resume_version',
-        'schedule': crontab(minute='*/1')
     }
 }

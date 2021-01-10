@@ -2,6 +2,7 @@ from django.db import models
 from django.dispatch import receiver
 from json import JSONEncoder
 from typing import Any
+import celery
 
 
 class ParagraphJSONEncoder(JSONEncoder):
@@ -40,6 +41,24 @@ class Resume(models.Model):
         A method which defines the string representation of a resume object to contain the date when it was uploaded.
         """
         return f'Resume Version: {self.date_uploaded.strftime("%m-%d-%Y")}'
+
+    def save(self, *args, **kwargs):
+        """
+        A method which overrides the default model save method in order to schedule a celery task when a new resume is
+        created.
+        """
+        # If the resume object has a primary key, then it has already been created, otherwise it has not
+        if self.pk:
+            new_project = False
+        else:
+            new_project = True
+
+        # Call the superclass' save method to save the resume to the database
+        super(Resume, self).save(*args, **kwargs)
+
+        # Schedule a celery task if the resume object was just created
+        if new_project:
+            celery.current_app.send_task('resume.tasks.new_resume_uploaded_activity', args=(self.pk,), countdown=5.)
 
     class Meta:
         """

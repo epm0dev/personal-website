@@ -3,9 +3,13 @@ from rest_framework.response import Response
 from django.http.response import HttpResponseNotFound
 from itertools import chain
 from math import ceil
-from .models import ProjectCreatedActivity, ProjectEditedActivity, PostCreatedActivity, PostEditedActivity
-from .serializers import (ProjectCreatedActivitySerializer, ProjectEditedActivitySerializer,
-                          PostCreatedActivitySerializer, PostEditedActivitySerializer)
+from .models import (
+    ProjectCreatedActivity, ProjectEditedActivity, PostCreatedActivity, PostEditedActivity, ResumeUploadedActivity
+)
+from .serializers import (
+    ProjectCreatedActivitySerializer, ProjectEditedActivitySerializer, PostCreatedActivitySerializer,
+    PostEditedActivitySerializer, ResumeUploadedActivitySerializer
+)
 
 
 class ActivityViewSet(viewsets.ViewSet):
@@ -52,7 +56,8 @@ class ActivityViewSet(viewsets.ViewSet):
             ProjectCreatedActivitySerializer(ProjectCreatedActivity.objects.all(), many=True).data,
             ProjectEditedActivitySerializer(ProjectEditedActivity.objects.all(), many=True).data,
             PostCreatedActivitySerializer(PostCreatedActivity.objects.all(), many=True).data,
-            PostEditedActivitySerializer(PostEditedActivity.objects.all(), many=True).data
+            PostEditedActivitySerializer(PostEditedActivity.objects.all(), many=True).data,
+            ResumeUploadedActivitySerializer(ResumeUploadedActivity.objects.all(), many=True).data
         ]
 
         # Map each set of serialized activity objects to python dictionaries
