@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-cloak>
         <h1>Please sign in</h1>
         <p v-if="incorrectAuth">Incorrect username or password entered - please try again</p>
         <form v-on:submit.prevent="login">

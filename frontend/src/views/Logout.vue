@@ -1,5 +1,5 @@
 <template>
-    <div></div>
+    <div v-cloak></div>
 </template>
 
 <script>

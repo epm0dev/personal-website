@@ -1,7 +1,7 @@
 <template>
     <div>
         <NavBar></NavBar>
-        <div class="container">
+        <div v-cloak class="container">
             <h1 class="text-center mt-3 mb-0">Blog</h1>
             <div class="container-fluid">
                 <hr class="mb-0">

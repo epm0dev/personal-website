@@ -1,7 +1,7 @@
 <template>
     <div>
         <NavBar></NavBar>
-        <div class="container">
+        <div v-cloak class="container">
             <div class="d-flex align-content-center justify-content-end">
                 <router-link id="projectsPageLink" class="nav-link active p-0 mt-1 me-2" :to="{ name: 'projects' }">&lt;&lt;
                     Return to Projects

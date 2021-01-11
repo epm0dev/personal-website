@@ -1,7 +1,7 @@
 <template>
     <div>
         <NavBar></NavBar>
-        <div class="container mt-3">
+        <div v-cloak class="container mt-3">
             <div v-if="!formSubmitted">
                 <h1 class="text-center">Contact Me</h1>
                 <hr class="mx-1">
