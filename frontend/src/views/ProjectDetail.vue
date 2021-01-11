@@ -16,21 +16,34 @@
             </div>
             <hr>
             <p class="lead">{{ project.description }}</p>
-            <p>{{ project.description_verbose }}</p>
+            <p v-for="(paragraph, index) in descriptionFormatted" :key="index">{{paragraph}}</p>
+            <div v-if="project.posts.length > 0">
+                <hr>
+                <h5 class="ms-1">Related Blog Posts</h5>
+                <BlogPost v-for="post in project.posts" :key="post.pk" :post="post" class="px-0"></BlogPost>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
 import NavBar from "@/components/NavBar";
+import BlogPost from "@/components/BlogPost";
 import {mapState} from "vuex";
 
 export default {
     name: "ProjectDetail",
     components: {
-        NavBar
+        NavBar,
+        BlogPost
     },
-    computed: mapState(['project']),
+    computed: {
+        ...mapState(['project']),
+        descriptionFormatted () {
+            let description = this.project.description_verbose
+            return description.split('\r\n')
+        }
+    },
     created() {
         this.$store.dispatch('loadProject', {id: this.$route.params.id})
     }
