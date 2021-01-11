@@ -1,4 +1,3 @@
-from typing import List
 from docx2python import docx2python
 
 
@@ -32,7 +31,7 @@ class Subsection(SectionBase):
     """
     TODO Docs
     """
-    def __init__(self, pars: List[str]):
+    def __init__(self, pars):
         """
         TODO Docs
         """
@@ -40,7 +39,7 @@ class Subsection(SectionBase):
         self.subtext = None
         self.create(pars)
 
-    def create(self, pars: List[str]):
+    def create(self, pars):
         """
         TODO Docs
         """
@@ -83,19 +82,54 @@ class Subsection(SectionBase):
 
             i += 1
 
+        def is_start_nested(par: str):
+            open_idx = par.rfind('(')
+            dash_idx = par.rfind('\u2013')
+            close_idx = par.rfind(')')
+
+            if open_idx >= 0 and dash_idx >= 0 and close_idx >= 0:
+                if open_idx < dash_idx < close_idx == len(par) - 1:
+                    return True
+
+            return False
+
+        num_pars = len(self.paragraphs)
+        i = 0
+        while i < num_pars:
+            if is_start_nested(self.paragraphs[i]):
+                nested_pars = []
+                start_idx = i + 1
+                j = i + 1
+                while j < num_pars:
+                    if is_start_nested(self.paragraphs[j]):
+                        end_idx = j
+                        nested_pars = self.paragraphs[start_idx:end_idx]
+                    elif j == num_pars - 1:
+                        nested_pars = self.paragraphs[start_idx:]
+
+                    if len(nested_pars) > 0:
+                        self.paragraphs[i + 1] = nested_pars
+                        del_idx = i + 2
+                        for k in range(len(nested_pars) - 1):
+                            del self.paragraphs[del_idx]
+                            num_pars -= 1
+                            j -= 1
+                        i += 1
+                        break
+                    j += 1
+            i += 1
 
     def __str__(self):
         """
         TODO Docs
         """
-        ret = f'{self.heading}\n'
+        ret = f'{self.heading}'
 
         if self.subtext:
-            ret += f'\t{self.subtext}\n\t\t- '
-        else:
-            ret += '\t\t- '
+            ret += f'\n\t{self.subtext}'
 
-        ret += '\n\t\t- '.join(self.paragraphs)
+        for p in self.paragraphs:
+            ret += f'\n\t\t- {p}'
         return ret
 
 
@@ -104,7 +138,7 @@ class Section(SectionBase):
     TODO Docs
     """
 
-    def __init__(self, pars: List[str]):
+    def __init__(self, pars):
         """
         TODO Docs
         """
@@ -112,7 +146,7 @@ class Section(SectionBase):
         self.subsections = []
         self.create(pars)
 
-    def create(self, pars: List[str]):
+    def create(self, pars):
         """
         TODO Docs
         """
@@ -200,7 +234,7 @@ class Resume:
         return '\n\n'.join([str(s) for s in self.sections])
 
     @staticmethod
-    def chunk_raw_body(body: List[str]):
+    def chunk_raw_body(body):
         """
         TODO Docs
         """
