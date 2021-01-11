@@ -1,6 +1,6 @@
 <template>
     <div class="container px-2 mt-3">
-        <div class="card">
+        <div class="card shadow-sm">
             <div class="card-body">
                 <h5>{{ activity.text }}</h5>
                 <div>

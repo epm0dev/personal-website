@@ -1,5 +1,5 @@
 <template>
-    <nav v-once class="navbar navbar-expand-lg navbar-dark bg-primary mb-1">
+    <nav v-once class="navbar navbar-expand-lg navbar-dark bg-primary mb-1 shadow">
         <div class="container-fluid">
             <router-link class="navbar-brand pb-2" aria-current="page" :to="{ name: 'home' }">
                 <i class="fas fa-user me-1"></i>

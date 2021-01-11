@@ -3,7 +3,7 @@
         <NavBar></NavBar>
         <div v-cloak class="container">
             <div class="container-fluid pt-4 pb-4">
-                <div class="card">
+                <div class="card shadow">
                     <div class="card-header bg-primary text-light">
                         <h2 class="mb-0">About Me</h2>
                     </div>

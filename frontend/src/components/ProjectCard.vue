@@ -1,5 +1,5 @@
 <template>
-    <div class="card transition" @mouseover="hover = true" @mouseleave="hover = false" :class="{hovered: hover}">
+    <div class="card transition shadow-sm" @mouseover="hover = true" @mouseleave="hover = false" :class="{hovered: hover}">
         <div class="card-header bg-primary text-light">
             <h3 class="mb-0">{{ project.title }}</h3>
         </div>

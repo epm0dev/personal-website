@@ -1,6 +1,6 @@
 <template>
     <div class="container mt-3" :class="{'px-2': this.$router.currentRoute.fullPath.startsWith('/blog/')}">
-        <div class="card">
+        <div class="card shadow-sm">
             <div class="card-body">
                 <h3>{{ post.title }}</h3>
                 <h5 class="card-subtitle text-muted mb-2">{{ post.subtitle }}</h5>
