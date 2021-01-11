@@ -2,14 +2,14 @@ from django.test import TestCase
 from models import Project, Keyword
 
 
-class ResumeOutlineModelTestCase(TestCase):
+class ResumeModelTestCase(TestCase):
     """
     TODO Docs
     """
 
     fixtures = ['resume-test.json']
 
-    def test_create_resume_outline(self):
+    def test_create_resume(self):
         """
         TODO Docs
         """

@@ -25,7 +25,10 @@ class Resume(models.Model):
     """
 
     # Standard fields
-    file = models.FileField(
+    document = models.FileField(
+        upload_to='resume/'
+    )
+    pdf = models.FileField(
         upload_to='resume/'
     )
     date_uploaded = models.DateField(
@@ -148,7 +151,7 @@ def create_resume(sender, instance, created, **kwargs):
     from .scripts import Resume
 
     if created:
-        resume = Resume(instance.file.path)
+        resume = Resume(instance.document.path)
         for s in resume.sections:
             if len(s.subsections) > 0:
                 section = ResumeSection(
