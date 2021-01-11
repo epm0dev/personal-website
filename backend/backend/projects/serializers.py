@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Project, Keyword
+from blog.serializers import PostSerializer
 
 
 class KeywordSerializer(serializers.ModelSerializer):
@@ -30,10 +31,11 @@ class ProjectDetailSerializer(serializers.ModelSerializer):
     its details.
     """
     keywords = KeywordSerializer(many=True, read_only=True)
+    posts = PostSerializer(many=True, read_only=True)
 
     class Meta:
         model = Project
         fields = [
             'pk', 'url', 'title', 'description', 'description_verbose', 'date_created', 'time_created', 'date_changed',
-            'time_changed', 'phase', 'category', 'keywords'
+            'time_changed', 'phase', 'category', 'keywords', 'posts'
         ]

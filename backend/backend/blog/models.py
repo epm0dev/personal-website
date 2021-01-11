@@ -35,7 +35,7 @@ class Post(models.Model):
     # Relationship fields
     project = models.ForeignKey(
         Project,
-        related_name='projects',
+        related_name='posts',
         on_delete=models.CASCADE,
         null=True,
         blank=True
