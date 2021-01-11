@@ -40,14 +40,23 @@
                             <div class="col-12">
                                 <ResumeAccordion :resume="resume"></ResumeAccordion>
                             </div>
+                            <div class="col-12 mt-3">
+                                <a class="resumeDownload bg-dark" href="http://localhost:8000/api/resume/latest/download/"
+                                   download>
+                                    <button type="button" class="btn btn-primary w-100">
+                                        <i class="fas fa-download me-1"></i>
+                                        Download Resume
+                                    </button>
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-center">
-                        <a target="_blank" href="https://github.com/epm0dev">
-                            <i class="fab fa-github-square fa-3x"></i>
+                        <a class="socialLink" target="_blank" href="https://github.com/epm0dev">
+                            <i class="fab fa-github-square fa-2x"></i>
                         </a>
-                        <a target="_blank" href="https://www.linkedin.com/in/epm0dev/">
-                            <i class="fab fa-linkedin fa-3x"></i>
+                        <a class="socialLink" target="_blank" href="https://www.linkedin.com/in/epm0dev/">
+                            <i class="fab fa-linkedin fa-2x"></i>
                         </a>
                     </div>
                 </div>
@@ -75,14 +84,18 @@ export default {
 </script>
 
 <style scoped>
-a {
+.socialLink {
     color: black;
     opacity: 55%;
-    margin: 0 0.5rem;
+    margin: 0 0.25rem;
     transition: all 0.15s linear;
 }
 
-a:hover {
+.socialLink:hover {
     opacity: 75%;
+}
+
+.resumeDownload {
+ text-decoration: none;
 }
 </style>
