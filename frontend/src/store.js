@@ -54,16 +54,16 @@ export default new Vuex.Store({
         accessToken: null,
         refreshToken: null,
         projects: {
-            featured: [],
-            general: [],
-            archived: []
+            featured: null,
+            general: null,
+            archived: null
         },
-        project: {},
-        blogPosts: [],
+        project: null,
+        blogPosts: null,
         numBlogPostPages: 0,
-        feedActivity: [],
+        feedActivity: null,
         numFeedActivityPages: 0,
-        resume: {}
+        resume: null
     },
     mutations: {
         updateStorage(state, {access, refresh}) {
@@ -123,6 +123,9 @@ export default new Vuex.Store({
             })
         },
         loadFeaturedProjects(context) {
+            if (context.state.projects['featured']) {
+                return
+            }
             return new Promise((resolve, reject) => {
                 getProjects('featured', 1, [], resolve, reject)
             })
@@ -131,6 +134,9 @@ export default new Vuex.Store({
                 })
         },
         loadGeneralProjects(context) {
+            if (context.state.projects['general']) {
+                return
+            }
             return new Promise((resolve, reject) => {
                 getProjects('general', 1, [], resolve, reject)
             })
@@ -139,6 +145,9 @@ export default new Vuex.Store({
                 })
         },
         loadArchivedProjects(context) {
+            if (context.state.projects['archived']) {
+                return
+            }
             return new Promise((resolve, reject) => {
                 getProjects('archived', 1, [], resolve, reject)
             })
@@ -147,6 +156,9 @@ export default new Vuex.Store({
                 })
         },
         loadProject(context, payload) {
+            if (context.state.project && context.state.project.pk === payload.id) {
+                return
+            }
             return new Promise((resolve, reject) => {
                 getAPI.get('/projects/' + payload.id)
                     .then(response => {
@@ -158,6 +170,9 @@ export default new Vuex.Store({
             })
         },
         loadBlogPosts(context) {
+            if (context.state.blogPosts) {
+                return
+            }
             return new Promise((resolve, reject) => {
                 getBlogPosts(1, [], resolve, reject)
             })
@@ -169,6 +184,9 @@ export default new Vuex.Store({
                 })
         },
         loadFeedActivity(context) {
+            if (context.state.feedActivity) {
+                return
+            }
             return new Promise((resolve, reject) => {
                 getFeedActivity(1, [], resolve, reject)
             })
@@ -180,6 +198,9 @@ export default new Vuex.Store({
                 })
         },
         loadResume(context) {
+            if (context.state.resume) {
+                return
+            }
             return new Promise((resolve, reject) => {
                 getAPI.get('/resume/latest/')
                     .then(response => {
