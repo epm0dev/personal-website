@@ -3,20 +3,22 @@
         <div class="card-header bg-primary text-light">
             <h3 class="mb-0">{{ project.title }}</h3>
         </div>
-        <div v-if="!isArchived" class="card-header text-center" :class="phaseColor">
+        <div v-if="!isArchived" class="card-header text-center py-1" :class="phaseColor">
             <h5 class="mb-0">{{ project.phase }}</h5>
         </div>
-        <div class="card-body">
-            <div>
-                    <span class="badge rounded-pill bg-secondary mx-1" v-for="keyword in project.keywords"
-                          :key="keyword.pk">{{ keyword.word }}</span>
+        <div class="card-body p-2">
+            <div class="row g-1 justify-content-center">
+                <div class="col-auto" v-for="keyword in project.keywords"
+                     :key="keyword.pk">
+                    <span class="badge rounded-pill bg-secondary">{{ keyword.word }}</span>
+                </div>
             </div>
-            <div :class="{'mt-3': project.keywords.length > 0}">
+            <div :class="{'mt-2': project.keywords.length > 0}" class="px-1 pb-1">
                 {{ project.description }}
             </div>
         </div>
         <div class="card-footer text-muted text-end">
-            <router-link :to="{ name: 'project-detail', params: { id: project.pk } }">
+            <router-link id="readMore" :to="{ name: 'project-detail', params: { id: project.pk } }">
                 Read More <i class="fas fa-external-link-alt"></i>
             </router-link>
         </div>
@@ -58,5 +60,16 @@ export default {
 
 .hovered {
     transform: scale(1.1);
+}
+
+#readMore {
+    color: black;
+    opacity: 55%;
+    transition: all 0.15s linear;
+    text-decoration: none;
+}
+
+#readMore:hover {
+    opacity: 75%;
 }
 </style>

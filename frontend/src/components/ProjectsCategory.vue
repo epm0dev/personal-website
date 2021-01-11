@@ -9,7 +9,7 @@
             <hr class="flex-fill mt-1" v-if="!category">
         </div>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid mt-1">
         <div class="row">
             <div class="col-12 col-md-6 col-lg-4 col-xxl-3 mb-3" v-for="project in projects" :key="project.url">
                 <ProjectCard class="h-100" :project="project"></ProjectCard>

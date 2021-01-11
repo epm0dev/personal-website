@@ -77,12 +77,12 @@ export default {
 <style scoped>
 a {
     color: black;
-    opacity: 75%;
+    opacity: 55%;
     margin: 0 0.5rem;
     transition: all 0.15s linear;
 }
 
 a:hover {
-    opacity: 55%;
+    opacity: 75%;
 }
 </style>

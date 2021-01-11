@@ -4,7 +4,7 @@
         <div class="container mt-3">
             <div v-if="!formSubmitted">
                 <h1 class="text-center">Contact Me</h1>
-                <hr>
+                <hr class="mx-1">
                 <form @submit.prevent="submitForm" class="mx-1">
                     <div class="row mt-3">
                         <div class="col form-group">
