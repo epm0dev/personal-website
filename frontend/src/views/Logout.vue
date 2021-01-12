@@ -1,5 +1,7 @@
 <template>
-    <div v-cloak></div>
+    <div v-cloak>
+        <h1 class="mt-5 text-center">Logging out...</h1>
+    </div>
 </template>
 
 <script>

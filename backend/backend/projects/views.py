@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
-from django.http.response import HttpResponseNotFound
+from django.http.response import Http404
 from .serializers import ProjectSerializer, ProjectDetailSerializer, KeywordSerializer
 from .models import Project, DisplayCategory
 
@@ -18,20 +18,18 @@ class ProjectViewSet(viewsets.ModelViewSet):
 
         :returns: The dynamically chosen queryset for listing and retrieving project objects from.
         """
-        if self.action == 'retrieve':
-            return Project.objects.all()
-
         category = self.request.query_params.get('category', None)
 
-        if category is not None:
-            if category == 'featured':
-                return Project.featured.all()
-            elif category == 'general':
-                return Project.general.all()
-            elif category == 'archived':
-                return Project.archived.all()
+        if self.action == 'retrieve' or category is None:
+            return Project.objects.all()
+        elif category == 'featured':
+            return Project.featured.all()
+        elif category == 'general':
+            return Project.general.all()
+        elif category == 'archived':
+            return Project.archived.all()
 
-        return HttpResponseNotFound('<h1>Page not found</h1>')
+        raise Http404
 
     def get_serializer_class(self):
         """
