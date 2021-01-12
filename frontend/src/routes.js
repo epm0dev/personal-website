@@ -5,7 +5,7 @@ import Logout from './views/Logout'
 import Admin from './views/Admin'
 import Home from './views/Home'
 import Projects from './views/Projects'
-import ProjectDetail from "@/views/ProjectDetail";
+import ProjectDetail from "./views/ProjectDetail";
 import Blog from './views/Blog'
 import Feed from './views/Feed'
 import Contact from './views/Contact'
@@ -19,7 +19,7 @@ export default new VueRouter({
         {
             path: '/admin/login',
             name: 'login',
-            component: Login,
+            component: Login
         },
         {
             path: '/admin/logout',
