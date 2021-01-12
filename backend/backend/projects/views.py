@@ -7,7 +7,7 @@ from .models import Project, DisplayCategory
 
 class ProjectViewSet(viewsets.ModelViewSet):
     """
-    API endpoint for listing and retrieving blog posts.
+    API endpoint for listing and retrieving projects.
     """
 
     def get_queryset(self):
