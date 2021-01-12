@@ -39,3 +39,7 @@ class ProjectDetailSerializer(serializers.ModelSerializer):
             'pk', 'url', 'title', 'description', 'description_verbose', 'date_created', 'time_created', 'date_changed',
             'time_changed', 'phase', 'category', 'keywords', 'posts'
         ]
+
+
+KeywordSerializer.projects = ProjectSerializer(many=True, read_only=True)
+KeywordSerializer.Meta.fields.append('projects')

@@ -2,7 +2,7 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from django.http.response import Http404
 from .serializers import ProjectSerializer, ProjectDetailSerializer, KeywordSerializer
-from .models import Project, DisplayCategory
+from .models import Project, DisplayCategory, Keyword
 
 
 class ProjectViewSet(viewsets.ModelViewSet):
@@ -49,3 +49,4 @@ class KeywordViewSet(viewsets.ModelViewSet):
     API endpoint for reading and writing keyword objects.
     """
     serializer_class = KeywordSerializer
+    queryset = Keyword.objects.all()
