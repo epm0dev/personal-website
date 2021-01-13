@@ -1,7 +1,7 @@
 <template>
     <div>
         <NavBar></NavBar>
-        <div v-cloak class="container">
+        <div v-cloak class="container" v-if="feedActivity && feedActivity[0].activity.length !== 0">
             <h1 class="text-center mt-3 mb-0">Feed</h1>
             <div class="container">
                 <hr class="mb-0">
@@ -25,6 +25,9 @@
                     </ul>
                 </nav>
             </div>
+        </div>
+        <div v-else class="container mt-5">
+            <h5 class="text-center">It looks like there's nothing here, or the page's content failed to load properly. Please try again later.</h5>
         </div>
     </div>
 </template>
