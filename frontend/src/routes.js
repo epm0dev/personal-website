@@ -1,8 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Login from './views/Login'
-import Logout from './views/Logout'
-import Admin from './views/Admin'
 import Home from './views/Home'
 import Projects from './views/Projects'
 import ProjectDetail from "./views/ProjectDetail";
@@ -16,24 +13,6 @@ export default new VueRouter({
     mode: 'history',
     base: '/',
     routes: [
-        {
-            path: '/admin/login',
-            name: 'login',
-            component: Login
-        },
-        {
-            path: '/admin/logout',
-            name: 'logout',
-            component: Logout,
-        },
-        {
-            path: '/admin',
-            name: 'admin',
-            component: Admin,
-            meta: {
-                requiresLogin: true
-            }
-        },
         {
             path: '/',
             name: 'home',
