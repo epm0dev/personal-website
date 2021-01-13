@@ -10,3 +10,4 @@ gunicorn==20.0.4
 celery==5.0.5
 redis==3.5.3
 docx2python==1.27.1
+django-ses==1.0.3

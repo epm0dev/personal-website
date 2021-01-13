@@ -13,6 +13,7 @@ services:
       - media_data:/vol/web/media
     env_file:
       - .env.prd
+      - .env.aws
     depends_on:
       - production_db
       - production_redis

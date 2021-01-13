@@ -135,3 +135,8 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': crontab(minute='*/1'),
     }
 }
+
+EMAIL_BACKEND = 'django_ses.SESBackend'
+AWS_SES_RETURN_PATH = 'epmancin@ncsu.edu'
+AWS_SES_REGION_NAME = 'us-east-2'
+AWS_SES_REGION_ENDPOINT = 'email.us-east-2.amazonaws.com'
