@@ -64,12 +64,12 @@ export default {
 
 #readMore {
     color: black;
-    opacity: 55%;
+    opacity: 75%;
     transition: all 0.15s linear;
     text-decoration: none;
 }
 
 #readMore:hover {
-    opacity: 75%;
+    opacity: 55%;
 }
 </style>

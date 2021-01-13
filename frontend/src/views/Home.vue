@@ -86,13 +86,13 @@ export default {
 <style scoped>
 .socialLink {
     color: black;
-    opacity: 55%;
+    opacity: 75%;
     margin: 0 0.25rem;
     transition: all 0.15s linear;
 }
 
 .socialLink:hover {
-    opacity: 75%;
+    opacity: 55%;
 }
 
 .resumeDownload {
