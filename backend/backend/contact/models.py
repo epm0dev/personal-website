@@ -47,6 +47,28 @@ class ContactForm(models.Model):
         default=False
     )
 
+    # Properties
+    @property
+    def formatted(self):
+        """
+        TODO Docs
+        """
+        if self.middle_initial:
+            name = f'{self.first_name} {self.middle_initial}. {self.last_name}'
+        else:
+            name = f'{self.first_name} {self.last_name}'
+
+        out = f'{name}\nEmail: {self.email_address}\n'
+
+        if self.phone_number:
+            out += f'Phone: {self.phone_number}\n\n{self.message}\n'
+        else:
+            out += f'\n{self.message}\n'
+
+        return out
+
+
+
     # Methods
     def __str__(self):
         """

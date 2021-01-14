@@ -140,3 +140,5 @@ EMAIL_BACKEND = 'django_ses.SESBackend'
 AWS_SES_RETURN_PATH = 'epmancin@ncsu.edu'
 AWS_SES_REGION_NAME = 'us-east-2'
 AWS_SES_REGION_ENDPOINT = 'email.us-east-2.amazonaws.com'
+AWS_SES_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', 'ses_access_key_id')
+AWS_SES_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', 'ses_secret_access_key')
