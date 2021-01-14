@@ -16,4 +16,4 @@ phases:
       - echo "AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY" >> .env.prd
   build:
     commands:
-      - docker-compose -f docker-compose.prd.yml up --build
+      - docker-compose -f docker-compose.prd.yml up -d --build
