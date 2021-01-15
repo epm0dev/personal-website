@@ -17,4 +17,4 @@ phases:
       - mv docker-compose.prd.yml docker-compose.yml
   build:
     commands:
-      - docker-compose up -d --build
+      - docker-compose build
