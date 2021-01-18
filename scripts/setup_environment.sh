@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+echo "SECRET_KEY=$SECRET_KEY" >> .env.prd
+echo "ALLOWED_HOSTS=$ALLOWED_HOSTS" >> .env.prd
+echo "POSTGRES_DB=$POSTGRES_DB" >> .env.prd
+echo "POSTGRES_USER=$POSTGRES_USER" >> .env.prd
+echo "POSTGRES_PASSWORD=$POSTGRES_PASSWORD" >> .env.prd
+echo "DB_HOST=$DB_HOST" >> .env.prd
+echo "DB_PORT=$DB_PORT" >> .env.prd
+echo "REDIS_HOST=$REDIS_HOST" >> .env.prd
+echo "CORS_ALLOWED_ORIGINS=$CORS_ALLOWED_ORIGINS" >> .env.prd
+echo "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID" >> .env.prd
+echo "AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY" >> .env.prd
