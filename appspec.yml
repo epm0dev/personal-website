@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: ~/app/
+    destination: /var/app/
 hooks:
   BeforeInstall:
     - location: scripts/install_dependencies.sh
